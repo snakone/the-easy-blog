@@ -1,4 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CORE_MODULE_CONFIG, CORE_MODULE_CONSTANTS } from './core.module.config';
 import { ErrorHandler, NgModule, Optional, SkipSelf } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,31 +20,26 @@ import { JwtInterceptor } from './services/http/jwt.interceptor';
 import { QuillFormatModule } from './services/quill/quill.module';
 import { SearchEffects } from './ngrx/search/search.effects';
 
-@NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    HttpClientModule,
-    NgxWebstorageModule.forRoot(CORE_MODULE_CONSTANTS.WEBSTORAGE_CONFIG),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
-    }),
-    StoreModule.forFeature('AppState', appReducers),
-    EffectsModule.forRoot([
-      UserEffects,
-      PostEffects,
-      SearchEffects
-    ]),
-    QuillFormatModule,
-    StorageModule,
-  ],
-  providers: [
-    HttpService,
-    { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
-    { provide: ErrorHandler, useClass: ErrorHandlerService },
-    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
-  ],
-})
+@NgModule({ imports: [BrowserAnimationsModule,
+        NgxWebstorageModule.forRoot(CORE_MODULE_CONSTANTS.WEBSTORAGE_CONFIG),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production
+        }),
+        StoreModule.forFeature('AppState', appReducers),
+        EffectsModule.forRoot([
+            UserEffects,
+            PostEffects,
+            SearchEffects
+        ]),
+        QuillFormatModule,
+        StorageModule], providers: [
+        HttpService,
+        { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
+        { provide: ErrorHandler, useClass: ErrorHandlerService },
+        { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig },
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
