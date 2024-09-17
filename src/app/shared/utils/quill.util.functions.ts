@@ -2,6 +2,11 @@ import { slugify } from "@core/services/quill/quill.module";
 import { PostHeader } from "@shared/types/interface.post";
 import { DeltaOperation } from "quill";
 
+/**
+ * Get a Quill Message and return the H2 headers with unique ID.
+ * 
+ * Used to create the Post index.
+*/
 export function getQuillHeaders(ops: DeltaOperation[]): PostHeader[] {
   if (ops) {
     const headers = ops.map(

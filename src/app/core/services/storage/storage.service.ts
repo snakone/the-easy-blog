@@ -40,7 +40,7 @@ export class StorageService {
     return this.storage[value] || undefined;
   }
 
-  public getSettings(value?: string): string | UserSettings | boolean | undefined {
+  public getSettings(value?: string): StorageDataType {
     this.loadStorage();
     if (!value) {
       return this.storage.settings || undefined;
@@ -57,3 +57,5 @@ export class StorageService {
   }
 
 }
+
+type StorageDataType = string | UserSettings | boolean | undefined;

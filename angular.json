@@ -64,7 +64,8 @@
             "allowedCommonJsDependencies": [
               "quill-delta-to-html",
               "quill",
-              "quill-image-compress"
+              "quill-image-compress",
+              "hammerjs"
             ],
             "browser": "src/main.ts"
           },
@@ -130,7 +131,15 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/sticky-sidebar/dist/sticky-sidebar.min.js",
+              "src/assets/scripts/fas.js",
+              "src/assets/scripts/masonry.js",
+              "src/assets/scripts/highlight.js"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/styles"]
+            }
           }
         },
         "e2e": {

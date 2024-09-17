@@ -32,6 +32,11 @@ export const REMOVE_FRIEND_CONFIRMATION: ConfirmationDialogProps = {
   message: '¿Estás seguro que quieres eliminar a este usuario de tu lista de amigos?'
 };
 
+export const LOGOUT_CONFIRMATION: ConfirmationDialogProps = {
+  title: 'Desconectar',
+  message: '¿Quieres desconectar tu cuenta? Tendrás que volver a iniciar sesión para acceder a tus bocetos.'
+};
+
 export const PREVIEW_DRAFT_DIALOG: FormattedDialog<DraftPreviewDialogComponent> = {
   component: DraftPreviewDialogComponent,
   css: 'preview'

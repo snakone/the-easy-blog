@@ -14,7 +14,7 @@ export class RecentPostSkeletonComponent {
   items: number[];
 
   ngOnInit() {
-    this.items = Array(this.limit).fill(1);
+    this.items = Array(this.limit).fill("").map(_ => Math.random());
   }
 
 }

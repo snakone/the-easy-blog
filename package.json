@@ -1,6 +1,6 @@
 {
   "name": "formatted-blog",
-  "version": "0.17.3",
+  "version": "0.18.0",
   "description": "Application to create content",
   "keywords": [
     "Content",
@@ -25,7 +25,8 @@
     "build": "ng run formatted-blog:build:production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "doc": "compodoc -p tsconfig.json"
   },
   "private": true,
   "dependencies": {
@@ -41,6 +42,7 @@
     "@angular/router": "^18.2.3",
     "@angular/service-worker": "^18.2.3",
     "@ngrx/effects": "^18.0.2",
+    "@ngrx/operators": "^18.0.0",
     "@ngrx/store": "^18.0.2",
     "hammerjs": "^2.0.8",
     "highlight.js": "^11.9.0",
@@ -54,8 +56,7 @@
     "rxjs": "~7.8.1",
     "sticky-sidebar": "^3.3.1",
     "tslib": "^2.6.2",
-    "zone.js": "~0.14.10",
-    "@ngrx/operators": "^18.0.0"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.3",
@@ -73,6 +74,7 @@
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "^2.1.0",
     "protractor": "^7.0.0",
     "ts-node": "~10.9.1",
     "tslint": "~6.1.0",
