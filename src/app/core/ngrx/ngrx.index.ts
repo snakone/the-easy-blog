@@ -14,6 +14,7 @@ export interface AppState {
   posts: fromPosts.PostState;
   search: fromSearch.SearchState
 }
+
 export const appReducers: ActionReducerMap<AppState> = {
   user: fromUsers.reducer,
   posts: fromPosts.reducer,

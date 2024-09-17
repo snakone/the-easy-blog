@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { UsersFacade } from '@store/users/users.facade';
 import { PWAService } from '@services/pwa/pwa.service';
 import { StorageService } from '@services/storage/storage.service';
 
-import { THEME_KEY, TOKEN_KEY } from '@shared/data/constants';
+import { AUTO_LOGIN_KEY, THEME_KEY, TOKEN_KEY } from '@shared/data/constants';
 import { ThemeEnum } from '@shared/types/types.enums';
 
 @Component({
@@ -15,26 +15,34 @@ import { ThemeEnum } from '@shared/types/types.enums';
 
 export class AppComponent {
 
-  constructor(
-    private ls: StorageService,
-    private pwa: PWAService,
-    private userFcd: UsersFacade
-  ) {
+  ls = inject(StorageService);
+  pwa = inject(PWAService);
+  userFacade = inject(UsersFacade);
+
+  constructor() {
     this.checkTheme();
     this.checkToken();
     this.pwa.updateSW();
   }
 
-  private checkTheme(): void {
+  /**
+   * Check the theme with the Storage value.
+   * Toggle document.body class if "Dark"
+  */
+  public checkTheme(): void {
     if (this.ls.getSettings(THEME_KEY) === ThemeEnum.DARK) {
       document.body.classList.toggle(ThemeEnum.DARK);
     }
   }
 
-  private checkToken(): void {
+  /**
+   * Check the Storage 'autoLogin' value.
+   * If **true**, check the Token.
+  */
+  public checkToken(): void {
     const token = this.ls.get(TOKEN_KEY);
-    const autoLogin = this.ls.getSettings('autoLogin');
-    if (token && autoLogin) { this.userFcd.verifyToken(); }
+    const autoLogin = this.ls.getSettings(AUTO_LOGIN_KEY);
+    if (token && autoLogin) { this.userFacade.verifyToken(); }
   }
 
 }

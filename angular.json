@@ -21,12 +21,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/formatted-blog",
+            "outputPath": {
+              "base": "dist/formatted-blog"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -48,11 +51,8 @@
               "src/assets/scripts/masonry.js",
               "src/assets/scripts/highlight.js"
             ],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json",
-            "vendorChunk": true,
+            "serviceWorker": "ngsw-config.json",
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
@@ -64,8 +64,10 @@
             "allowedCommonJsDependencies": [
               "quill-delta-to-html",
               "quill",
-              "quill-image-compress"
-            ]
+              "quill-image-compress",
+              "hammerjs"
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -79,8 +81,6 @@
               "outputHashing": "all",
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "sourceMap": false,
               "aot": true,
               "budgets": [
@@ -131,7 +131,15 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/sticky-sidebar/dist/sticky-sidebar.min.js",
+              "src/assets/scripts/fas.js",
+              "src/assets/scripts/masonry.js",
+              "src/assets/scripts/highlight.js"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/styles"]
+            }
           }
         },
         "e2e": {

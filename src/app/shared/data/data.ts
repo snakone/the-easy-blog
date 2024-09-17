@@ -149,15 +149,15 @@ export const DRAFT_ICONS: ActionList[] = [
 ];
 
 export const NAVBAR_MENU: IconList[] = [
-  {label: 'Home', route: '/home'},
-  {label: 'About us', route: '/home'},
-  {label: 'Contacto', route: '/contact'},
-  {label: 'Políticas', route: '/conditions'}
+  {label: 'Home', route: '/home', _id: 1},
+  {label: 'About us', route: '/home', _id: 2},
+  {label: 'Contacto', route: '/contact', _id: 3},
+  {label: 'Políticas', route: '/conditions', _id: 4}
 ];
 
 export const NAVBAR_ICONS: IconList[]  = [
-  { icon: 'far fa-file-alt', route: '/news' },
-  { icon: 'fas fa-question', route: '/help' }
+  { icon: 'far fa-file-alt', route: '/news', _id: 1 },
+  { icon: 'fas fa-question', route: '/help', _id: 2 }
 ];
 
 // DRAFT CHECK
@@ -348,37 +348,43 @@ export const EMPTY_RECENT_POST: Post[] = [
     title: 'Beauty of Nature',
     author: 'Rick Allenson',
     createdAt: new Date('Sep, 05 2019'),
-    cover: 'assets/images/06-img.jpg'
+    cover: 'assets/images/06-img.jpg',
+    _id: "1"
   },
   {
     title: 'Beauty of Nature',
     author: 'Rick Allenson',
     createdAt: new Date('Sep, 05 2019'),
-    cover: 'assets/images/07-img.jpg'
+    cover: 'assets/images/07-img.jpg',
+    _id: "2"
   },
   {
     title: 'Beauty of Nature',
     author: 'Rick Allenson',
     createdAt: new Date('Sep, 05 2019'),
-    cover: 'assets/images/08-img.jpg'
+    cover: 'assets/images/08-img.jpg',
+    _id: "3"
   },
   {
     title: 'Beauty of Nature',
     author: 'Rick Allenson',
     createdAt: new Date('Sep, 05 2019'),
-    cover: 'assets/images/09-img.jpg'
+    cover: 'assets/images/09-img.jpg',
+    _id: "4"
   },
   {
     title: 'Beauty of Nature',
     author: 'Rick Allenson',
     createdAt: new Date('Sep, 05 2019'),
-    cover: 'assets/images/12-img.jpg'
+    cover: 'assets/images/12-img.jpg',
+    _id: "5"
   },
   {
     title: 'Beauty of Nature',
     author: 'Rick Allenson',
     createdAt: new Date('Sep, 05 2019'),
-    cover: 'assets/images/13-img.jpg'
+    cover: 'assets/images/13-img.jpg',
+    _id: "6"
   },
 ];
 

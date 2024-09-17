@@ -17,6 +17,7 @@ export interface IconList {
   icon?: string;
   label?: string;
   route?: string;
+  _id?: number;
 }
 
 export interface TextList {

@@ -27,7 +27,7 @@
               </li>
             }
             <!-- ICONS -->
-            @for (item of icons; track item.label) {
+            @for (item of icons; track item._id) {
             <li>
               <i [class]="item.icon"
                  [attr.aria-label]="item.icon"
@@ -55,7 +55,7 @@
               </i>
               @if(menuOpened) {
                 <ul class="dropdown-menu">
-                  @for(menu of dropdown; track menu.icon; let i = $index) {
+                  @for(menu of dropdown; track menu._id; let i = $index) {
                     <li [class]="'dropdown-item-' + (i + 1)" aria-hidden="false"
                         [routerLink]="menu.route"
                         (click)="menuOpened = false">{{menu.label}}

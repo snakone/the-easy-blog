@@ -7,6 +7,7 @@ export const STORAGE_KEY = 'storage';
 export const REFRESH_TOKEN_KEY = 'refreshToken';
 export const REMEMBER_EMAIL_KEY = 'rememberEmail';
 export const AUTO_SAVE_KEY = 'autoSave';
+export const AUTO_LOGIN_KEY = 'autoLogin';
 
 // KEYS
 export const MESSAGE_KEY = 'message';

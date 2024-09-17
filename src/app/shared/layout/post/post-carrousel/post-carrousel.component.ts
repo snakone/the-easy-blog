@@ -16,7 +16,6 @@ export class PostCarrouselComponent {
     '02-img.jpg',
     '03-img.jpg',
     '04-img.jpg',
-    '02-img.jpg',
   ];
 
   constructor() { }
