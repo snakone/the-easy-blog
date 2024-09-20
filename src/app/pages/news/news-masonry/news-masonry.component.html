@@ -11,7 +11,7 @@
                         #img
                         (error)="img.src = 'assets/images/placeholder.png'; img.alt='No Image'">
               } @placeholder {
-                <img src="assets/images/placeholder.png" alt="placeholder"/>
+                <img [src]="null | image" alt="placeholder"/>
               }
             </a>
           </div>

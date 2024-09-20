@@ -6,12 +6,11 @@
   }; as obs) {
     @for(draft of obs.drafts; track draft._id; let last = $last) {
       <app-post-card [small]="true"
-                    [border]="false"
-                    [last]="last"
-                    [post]="draft"
-                    [isDraft]="true"
-                    [favoritesID]="obs.favorites">
-      </app-post-card>
+                     [border]="false"
+                     [last]="last"
+                     [post]="draft"
+                     [isDraft]="true"
+                     [favoritesID]="obs.favorites"/>
     } @empty {
       <p>
         No se han encontrado bocetos.

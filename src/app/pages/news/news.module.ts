@@ -10,6 +10,7 @@ import { SnippetsModule } from '@shared/snippets/snippets.module';
 import { NewsRoutingModule } from './news.routing';
 import { NewsComponent } from './news.component';
 import { NewsMasonryComponent } from './news-masonry/news-masonry.component';
+import { PipesModule } from '@shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NewsMasonryComponent } from './news-masonry/news-masonry.component';
     LayoutModule,
     DirectivesModule,
     SnippetsModule,
-    NewsAccessModule
+    NewsAccessModule,
+    PipesModule
   ],
   providers: [
     MasonryService

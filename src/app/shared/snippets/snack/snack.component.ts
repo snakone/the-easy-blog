@@ -2,7 +2,8 @@ import {
   Component, 
   ViewChild, 
   ElementRef, 
-  DestroyRef
+  DestroyRef,
+  inject
 } from '@angular/core';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -21,13 +22,23 @@ const delay = 800;
 
 export class SnackOverlayComponent {
 
+  crafter = inject(CrafterService);
+  destroyRef = inject(DestroyRef);
+
   @ViewChild('snack', {static: false}) el!: ElementRef<any>;
   data!: Snack | null;
   count = 0;
 
-  constructor(private crafter: CrafterService, private destroyRef: DestroyRef) { }
+  constructor() { }
 
   ngAfterViewInit(): void {
+    this.subToSnack();
+  }
+
+  /**
+   * Subscribe to Crafter Snack with 100ms debounce.
+  */
+  public subToSnack(): void {
     this.crafter.snack$
     .pipe(
       takeUntilDestroyed(this.destroyRef), 
@@ -36,6 +47,13 @@ export class SnackOverlayComponent {
      .subscribe((res: Snack) => this.handleCSS(res));
   }
 
+  /**
+   * Handler function to fire on every new Snack.
+   * 
+   * If no current Snack, display and return.
+   * If current Snack, remove current and show next Snack.
+   * @param res The Snack to shown.
+  */
   private handleCSS(res: Snack): void {
     if (!this.count) {
       this.data = res;
@@ -48,6 +66,13 @@ export class SnackOverlayComponent {
     this.waitAndSetSnack(res);
   }
 
+  /**
+   * Wait for {delay} to clear the current Snack.
+   * 
+   * If no Snack message, reset the count and return.
+   * Wait {delay * 2} and show the Snack.
+   * @param res The Snack to shown.
+  */
   private waitAndSetSnack(res: Snack): void {
     setTimeout(() => this.data = null, delay);
 

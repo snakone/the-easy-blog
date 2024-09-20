@@ -8,14 +8,14 @@ export interface SearchState {
   loaded: boolean;
 }
 
-export const inititalState: SearchState = {
+export const initialState: SearchState = {
   value: '',
   result: null,
   loaded: false
 };
 
 const featureReducer = createReducer(
-  inititalState,
+  initialState,
   // GET
   on(SearchActions.fullSearchSuccess, (state, {result, value}) => ({ ...state, loaded: true, result, value })),
   on(SearchActions.fullSearchFailure, (state, {error}) => ({ ...state, error, loaded: false, result: null })),
@@ -24,7 +24,7 @@ const featureReducer = createReducer(
     ...state,
     result: null,
     loaded: false,
-    value: inititalState.value
+    value: initialState.value
   }))
 );
 

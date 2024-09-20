@@ -1,144 +1,133 @@
 @defer(when post) {
-  <article class="default"
-            [ngClass]="{
+<article class="default" [ngClass]="{
               'alone': alone, 
               'small': small, 
               'last': last
             }">
-    <figure>
-      <img [src]="post.cover"
-           [routerLink]="isDraft ? '/draft/' + post.slug : null"
-           alt="Post Image"
-           #img (error)="img.src = 'assets/images/placeholder.png'" img.alt='No Image'/>
-      <!-- HOVER -->
-      @if(!isDraft && !alone) {
-        <div class="inner">
-          <div class="content">
-            <span (click)="share()"><i class="fas fa-link"></i></span>
-            <span [routerLink]="'/post/' + post.slug">
-              <i class="fas fa-search"></i>
-            </span>
-          </div>
-        </div>
+  <figure>
+    <img [src]="post.cover" 
+         [routerLink]="isDraft ? '/draft/' + post.slug : null" 
+         alt="Post Image" 
+         #img
+         (error)="img.src = 'assets/images/placeholder.png'" img.alt='No Image' />
+    <!-- HOVER -->
+    @if(!isDraft && !alone) {
+    <div class="inner">
+      <div class="content">
+        <span (click)="share()"><i class="fas fa-link"></i></span>
+        <span [routerLink]="'/post/' + post.slug">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+    }
+  </figure>
+  <!-- CONTENT -->
+  <div class="main-content">
+    <p class="category">{{post.category}}</p>
+    <h1 [routerLink]="isDraft ? ('/draft/' + post.slug) : ('/post/' + post.slug)">{{post.title}}</h1>
+
+    @if(!small) {
+    <p class="date">
+      <!-- DRAFT STATUS -->
+      @if(isDraft) {
+      <span [class]="post.status">{{post.status | draftStatus}} </span>
+      <span class="tale">-</span>
       }
-    </figure>
-    <!-- CONTENT -->
-    <div class="main-content">
-      <p class="category">{{post.category}}</p>
-      <h1 [routerLink]="isDraft ? ('/draft/' + post.slug) : ('/post/' + post.slug)">{{post.title}}</h1>
-      
-      @if(!small) {
+      <span>{{post.createdAt | date}}</span>
+    </p>
+    }
+
+    @if(alone) {
+    <!-- FULL MESSAGE -->
+    @defer (when post.message) {
+    <div class="alone-intro" [innerHTML]="post.intro | shortMessage: alone"></div>
+    <quill-view [content]="post.message" [modules]="quillModules" class="alone" />
+    }
+    } @else {
+    <div [ngClass]="{'intro': !!post.intro}"
+      [innerHTML]="(post.intro | shortMessage: false : small : showIntro) | Sanitizer: 'html'">
+    </div>
+    }
+    <!-- BOTTOM -->
+    <div class="bottom" [ngClass]="{'first': border}">
+      @if(small) {
+      <div>
         <p class="date">
-        <!-- DRAFT STATUS -->
           @if(isDraft) {
-            <span [class]="post.status">{{post.status | draftStatus}} </span>
-            <span class="tale">-</span>
+          <span [class]="post.status">{{post.status | draftStatus}} </span>
+          <span class="tale">-</span>
           }
           <span>{{post.createdAt | date}}</span>
         </p>
-      }
-
-      @if(alone) {
-         <!-- FULL MESSAGE -->
-         @defer (when post.message) {
-          <div class="alone-intro" [innerHTML]="post.intro | shortMessage: alone"></div>
-          <quill-view [content]="post.message" [modules]="quillModules" class="alone"/>
-         }
+        <span class="author" (click)="friend()">{{post.author}}</span>
+      </div>
       } @else {
-        <div [ngClass]="{'intro': !!post.intro}" 
-             [innerHTML]="(post.intro | shortMessage: alone : small : showIntro) | Sanitizer: 'html'">
-        </div>
+      <span class="author" (click)="friend()">{{post.author}}</span>
       }
-      <!-- BOTTOM -->
-      <div class="bottom" [ngClass]="{'first': border}">
-        @if(small) {
-          <div>
-            <p class="date">
-              @if(isDraft) {
-                <span [class]="post.status">{{post.status | draftStatus}} </span>
-                <span class="tale">-</span> 
-              }
-              <span>{{post.createdAt | date}}</span>
-            </p>
-            <span class="author" (click)="friend()">{{post.author}}</span>
-          </div>
-        } @else {
-          <span class="author"  (click)="friend()">{{post.author}}</span>
-        }
-        <!-- ICONS -->
-        <ul [ngClass]="{'small': small}">
-          <!-- DRAFT ICONS -->
-          @if(isDraft) {
-            @for(item of draftIcons; track item.icon) {
-              <li (click)="switchObjDraft[item.action]()">
-                <i [class]="item.icon"
-                    [matTooltip]="item.label"
-                    [ngClass]="{'hide': item.action === 'edit' && 
+      <!-- ICONS -->
+      <ul [ngClass]="{'small': small}">
+        <!-- DRAFT ICONS -->
+        @if(isDraft) {
+        @for(item of draftIcons; track item.icon) {
+        <li (click)="switchObjDraft[item.action]()">
+          <i [class]="item.icon" [matTooltip]="item.label" [ngClass]="{'hide': item.action === 'edit' && 
                                         post.status === draftStatus.PENDING
                                }">
-                </i>
-              </li>
-            }
-            <!-- FAVORITE -->
-            <li>
-              @if(favoritesID?.includes(post._id)) {
-                <i class="fas fa-star favorite" 
-                   (click)="removeFavorite()" 
-                   [matTooltip]="'Eliminar favorito'">
-                </i>
-              } @else {
-                <i class="far fa-star" 
-                  (click)="favorite()" 
-                  [matTooltip]="'Añadir favorito'">
-                </i>
-              }
-            </li>
+          </i>
+        </li>
+        }
+        <!-- FAVORITE -->
+        <li>
+          @if(favoritesID?.includes(post._id)) {
+          <i class="fas fa-star favorite" (click)="removeFavorite()" [matTooltip]="'Eliminar favorito'">
+          </i>
           } @else {
-            <!-- SHARE -->
-            @if(alone) {
-              <li (click)="share()">
-                <i class="fas fa-link" [matTooltip]="'Compartir'"></i>
-              </li>
-            }
-            <!-- EDIT -->
-            @if(post.user === user?._id) {
-              <li (click)="editPost()">
-                <i class="fas fa-pen-fancy" [matTooltip]="'Editar'"></i>
-              </li>
-            }
-            <!-- ADD FRIEND -->
-            @if(post.user !== user?._id) {
-              <li (click)="friend()">
-                <i class="fas fa-user-plus" [matTooltip]="'Añadir'"></i>
-              </li>
-            }
+          <i class="far fa-star" (click)="favorite()" [matTooltip]="'Añadir favorito'">
+          </i>
+          }
+        </li>
+        } @else {
+        <!-- SHARE -->
+        @if(alone) {
+        <li (click)="share()">
+          <i class="fas fa-link" [matTooltip]="'Compartir'"></i>
+        </li>
+        }
+        <!-- EDIT -->
+        @if(post.user === user?._id) {
+        <li (click)="editPost()">
+          <i class="fas fa-pen-fancy" [matTooltip]="'Editar'"></i>
+        </li>
+        }
+        <!-- ADD FRIEND -->
+        @if(post.user !== user?._id) {
+        <li (click)="friend()">
+          <i class="fas fa-user-plus" [matTooltip]="'Añadir'"></i>
+        </li>
+        }
 
-            @for(item of postIcons; track item.icon) {
-              <li (click)="switchObjPost[item.action]()"
-                  [ngClass]="{
+        @for(item of postIcons; track item.icon) {
+        <li (click)="switchObjPost[item.action]()" [ngClass]="{
                     'hide': (item.action === 'download' && !alone) || 
                             (item.action === 'message' && post.user === user?._id)
                     }">
-                <i [class]="item.icon" [matTooltip]="item.label"></i>
-              </li>
-            }
-            <!-- FAVORITE -->
-            <li>
-              @if(favoritesID?.includes(post._id)) {
-                <i class="fas fa-star favorite" 
-                   (click)="removeFavorite()" 
-                   [matTooltip]="'Eliminar favorito'">
-                </i>
-              } @else {
-                <i class="far fa-star" 
-                   (click)="favorite()" 
-                   [matTooltip]="'Añadir favorito'">
-                </i>
-              }
-            </li>
+          <i [class]="item.icon" [matTooltip]="item.label"></i>
+        </li>
+        }
+        <!-- FAVORITE -->
+        <li>
+          @if(favoritesID?.includes(post._id)) {
+          <i class="fas fa-star favorite" (click)="removeFavorite()" [matTooltip]="'Eliminar favorito'">
+          </i>
+          } @else {
+          <i class="far fa-star" (click)="favorite()" [matTooltip]="'Añadir favorito'">
+          </i>
           }
-        </ul>
-      </div>
+        </li>
+        }
+      </ul>
     </div>
-  </article>
+  </div>
+</article>
 }

@@ -8,14 +8,14 @@ export interface NewsState {
   loaded: boolean;
 }
 
-export const inititalState: NewsState = {
+export const initialState: NewsState = {
   news: null,
   error: null,
   loaded: false
 };
 
 const featureReducer = createReducer(
-  inititalState,
+  initialState,
   // GET
   on(NewsActions.getSuccess, (state, {news}) => ({ ...state, loaded: true, news })),
   on(NewsActions.getFailure, (state, {error}) => ({ ...state, error, loaded: false })),

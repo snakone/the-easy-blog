@@ -4,6 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class ShortMessagePipe implements PipeTransform {
 
+  /**
+   * Transform the Post/Draft message into a shorten message depending on the arguments.
+   * @param value The Post/Draft message.
+   * @param alone If watching a single Post/Draft by slug.
+   * @param small The size of the Post/Draft.
+   * @param showIntro Usually to display the intro on the first Post/Draft list.
+  */
   transform(
     value: string, 
     alone: boolean,

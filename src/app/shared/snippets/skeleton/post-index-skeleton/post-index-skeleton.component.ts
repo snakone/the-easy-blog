@@ -8,18 +8,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 
 export class PostIndexSkeletonComponent {
-  items: {id: number, width: number}[] = [
-    {id: 1, width: this.getRandomWidth()},
-    {id: 2, width: this.getRandomWidth()},
-    {id: 3, width: this.getRandomWidth()},
-    {id: 4, width: this.getRandomWidth()},
-    {id: 5, width: this.getRandomWidth()},
-    {id: 6, width: this.getRandomWidth()},
-    {id: 7, width: this.getRandomWidth()},
-    {id: 8, width: this.getRandomWidth()}
-  ] 
+  items: SkeletonPostIndex[] = [1,2,3,4,5,6,7,8].map(i => ({id: i, width: this.getRandomWidth()}))
 
+  /**
+   * Returns a random number used for the width of Post Index Skeleton.
+   * Number between 100 and 251.
+  */
   private getRandomWidth(): number {
     return Math.floor(Math.random() * (250 - 100 + 1)) + 100;
   }
+}
+
+interface SkeletonPostIndex {
+  id: number;
+  width: number;
 }

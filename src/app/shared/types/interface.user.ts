@@ -1,5 +1,5 @@
 import { Post } from "./interface.post";
-import { AccountType, DraftSidebarSettingsEnum, ThemeType, UserActivityType } from "./types.enums";
+import { AccountType, DraftSidebarSettingsEnum, UserActivityType } from "./types.enums";
 
 // USER
 export interface User {

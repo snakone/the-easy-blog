@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { PostsFacade } from '@core/ngrx/posts/posts.facade';
 import { FilterType } from '@shared/types/interface.app';
-import { SearchType, DraftStatus, DraftStatusEnum, SearchTypeEnum } from '@shared/types/types.enums';
 import { KEYUP_EVENT } from '@shared/data/constants';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SEARCH_DEFAULT_PLACEHOLDER } from '@shared/data/data';
 import { UsersFacade } from '@core/ngrx/users/users.facade';
+import { SearchType, DraftStatus, DraftStatusEnum, SearchTypeEnum } from '@shared/types/types.enums';
 
 @Component({
   selector: 'app-content-search',
@@ -18,22 +18,25 @@ import { UsersFacade } from '@core/ngrx/users/users.facade';
 
 export class ContentSearchComponent {
 
+  postFacade = inject(PostsFacade);
+  userFacade = inject(UsersFacade);
+  destroyRef = inject(DestroyRef);
+
   @ViewChild('input', {static: true}) input: ElementRef;
   @Input() type: SearchType;
   @Input() placeholder: string = SEARCH_DEFAULT_PLACEHOLDER;
 
-  switchSearch: {[key: string]: DraftStatus} = {
+  switchSearchStatus: {[key: string]: DraftStatus} = {
     'pendiente': DraftStatusEnum.PENDING,
     'visto': DraftStatusEnum.SEEN,
     'no visto': DraftStatusEnum.NOT_SEEN
   };
 
-  constructor(
-    private postFacade: PostsFacade,
-    private destroyRef: DestroyRef,
-    private userFacade: UsersFacade
-  ) { }
+  constructor() { }
 
+  /**
+   * Subscribe to {KEYUP_EVENT} with debounceTime(100)
+  */
   ngAfterViewInit() {
     fromEvent<KeyboardEvent>(this.input.nativeElement, KEYUP_EVENT).
      pipe(
@@ -44,7 +47,11 @@ export class ContentSearchComponent {
      ).subscribe((value: string) => this.createFilter(value))
   }
 
-  private createFilter(value: string): void {
+  /**
+   * Function to filter everything when the input value changes.
+   @param value The input value.
+  */
+  public createFilter(value: string): void {
     switch (this.type) {
       case SearchTypeEnum.FRIENDS: {
         this.userFacade.setFilter(this.userFilter(value));
@@ -56,7 +63,11 @@ export class ContentSearchComponent {
     }
   }
 
-  private postFilter(value: string): FilterType {
+  /**
+   * Returns the filter to use when searching for Post/Draft.
+   @param value The input value.
+  */
+  public postFilter(value: string): FilterType {
     return {
       title: value,
       category: value,
@@ -66,7 +77,11 @@ export class ContentSearchComponent {
     };
   }
   
-  private userFilter(value: string): FilterType {
+  /**
+   * Returns the filter to use when searching for Users.
+   @param value The input value.
+  */
+  public userFilter(value: string): FilterType {
     return {
       name: value,
       email: value,
@@ -76,8 +91,13 @@ export class ContentSearchComponent {
     };
   }
 
-  private convertStatus(value: string): DraftStatus {
-    return this.switchSearch[(value || '').toLowerCase().trim()];
+  /**
+   * Function that normalizes the value as Post/Draft Status.
+   * Used on Post filter only.
+   @param value The input value.
+  */
+  public convertStatus(value: string): DraftStatus {
+    return this.switchSearchStatus[(value || '').toLowerCase().trim()];
   }
 
 }

@@ -22,4 +22,5 @@ import { PostIndexSkeletonComponent } from './post-index-skeleton/post-index-ske
     PostIndexSkeletonComponent
   ]
 })
+
 export class SkeletonModule { }

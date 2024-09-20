@@ -18,7 +18,7 @@ export interface PostState {
   favorites: string[];
 }
 
-export const inititalState: PostState = {
+export const initialState: PostState = {
   posts: null,
   postsLoaded: false,
   user: null,
@@ -32,7 +32,7 @@ export const inititalState: PostState = {
 };
 
 const featureReducer = createReducer(
-  inititalState,
+  initialState,
   // GET POSTS
   on(PostActions.getSuccess, (state, { posts }) => (
     {
@@ -84,7 +84,7 @@ const featureReducer = createReducer(
     {...state, filter: { ...state.filter, ...value }}
   )),
   on(PostActions.resetFilter, (state) => (
-    {...state, filter: { ...inititalState.filter }}
+    {...state, filter: { ...initialState.filter }}
   )),
   // FAVORITES
   on(PostActions.addFavorite, (state, { id }) => (

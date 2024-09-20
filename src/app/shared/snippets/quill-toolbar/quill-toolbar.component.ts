@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, DestroyRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, DestroyRef, inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { filter, Observable, map, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -13,6 +13,7 @@ import { SavingType } from '@shared/types/interface.app';
 import { AUTO_SAVE_KEY, MESSAGE_KEY } from '@shared/data/constants';
 import { SavingTypeEnum } from '@shared/types/types.enums';
 import { CREATE_ACTION_LIST } from '@shared/data/data';
+import { StorageService } from '@core/services/storage/storage.service';
 
 import { 
   SAVE_CONFIRMATION, 
@@ -20,7 +21,6 @@ import {
   PREVIEW_DRAFT_DIALOG, 
   QUILL_HELP_DIALOG 
 } from '@shared/data/dialogs';
-import { StorageService } from '@core/services/storage/storage.service';
 
 @Component({
   selector: 'app-quill-toolbar',
@@ -31,40 +31,56 @@ import { StorageService } from '@core/services/storage/storage.service';
 
 export class QuillToolbarComponent {
 
+  crafter = inject(CrafterService);
+  draftsFacade = inject(DraftsFacade);
+  router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
+  quillSrv = inject(QuillService);
+  createDraftSrv = inject(CreateDraftService);
+  destroyRef = inject(DestroyRef);
+  ls = inject(StorageService);
+
   @Input() draft: Post;
   @Input() form = false;
   @Output() clean = new EventEmitter<void>();
   saving$: Observable<SavingType>;
   totalDrafts$: Observable<number> | undefined;
   saveTypes = SavingTypeEnum;
-  autoSave: boolean = false;
   
   iconList = CREATE_ACTION_LIST;
 
-  constructor(
-    private crafter: CrafterService,
-    private draftsFacade: DraftsFacade,
-    private router: Router,
-    private route: ActivatedRoute,
-    private quillSrv: QuillService,
-    private createDraftSrv: CreateDraftService,
-    private destroyRef: DestroyRef,
-    private ls: StorageService
-  ) { }
+  constructor() {}
 
   ngOnInit(): void {
     this.saving$ = this.draftsFacade.saving$;
-    this.totalDrafts$ = this.draftsFacade.drafts$.pipe(
-      map(drafts => drafts?.length || 0)
-    );
+    this.getTotalDrafts();
+    this.checkAutoSave();
+  }
 
-    this.autoSave = this.ls.getSettings(AUTO_SAVE_KEY) as boolean;
-
-    if (!this.autoSave) {
+  /**
+   * Checks the {AUTO_SAVE_KEY} on the Local Storage.
+   * Updates the Saving State accordingly.
+  */
+  public checkAutoSave(): void {
+    if (!this.ls.getSettings(AUTO_SAVE_KEY) as boolean) {
       this.draftsFacade.setSaving({value: false, type: SavingTypeEnum.TEMPORAL});
     }
   }
 
+  /**
+   * Get the total amount of User Drafts from the store.
+  */
+  private getTotalDrafts(): void {
+    this.totalDrafts$ = this.draftsFacade.drafts$.pipe(
+      map(drafts => drafts?.length || 0)
+    );
+  }
+
+  /**
+   * Object used on the HTML to map the icons to actions.
+   * @param key The icon key
+   * @param saving Saving State
+  */
   switchAction: {[key: string]: (saving?: boolean) => void} = {
     new: (saving: boolean) => this.new(saving),
     preview: (saving: boolean) => this.preview(saving),
@@ -75,10 +91,17 @@ export class QuillToolbarComponent {
     form: () => this.goToForm()
   };
 
+  /**
+   * Option to create a Draft from scratch. Ask for confirmation.
+   * After confirm, saves the current {draft} and reset it.
+   * 
+   * Excepts: {saving} is true, or the {draft} is temporal.
+   * @param saving Saving State
+  */
   private new(saving: boolean): void {
     if (!this.draft || saving || this.draft.temporal) { return; }
     this.crafter.confirmation(SAVE_CONFIRMATION)
-    .afterClosed()
+    ?.afterClosed()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         filter(Boolean),
@@ -88,29 +111,51 @@ export class QuillToolbarComponent {
     ).subscribe(_ => this.draftsFacade.resetActive());
   }
 
+  /**
+   * Opens the preview dialog. Disabled if {saving} is true.
+   * @param saving Saving State
+  */
   private preview(saving: boolean): void {
     if (!this.draft || saving) { return; }
     this.crafter.dialog(PREVIEW_DRAFT_DIALOG);
   }
 
+  /**
+   * Opens the help dialog. Disabled if {saving} is true.
+   * @param saving Saving State
+  */
   private help(saving: boolean): void {
     if (saving) { return; }
     this.crafter.dialog(QUILL_HELP_DIALOG);
   }
 
+  /**
+   * Download the curren Draft as HTML. Disabled if {saving} is true.
+   * @param saving Saving State
+  */
   private download(saving: boolean): void {
     if (!this.draft || saving) { return; }
     this.quillSrv.convertToHTML(this.draft);
   }
 
+  /**
+   * Sends the draft id to save it manually.
+  */
   public saveManualDraft(): void {
     this.createDraftSrv.onSaveManual(this.draft?._id || null);
   }
 
+  /**
+   * Delete the current Draft. Ask for confirmation.
+   * 
+   * Sends the draft id to make ZoomOut animation.
+   * @param saving Saving State
+  */
+
   private delete(saving: boolean): void {
     if (!this.draft || saving) { return; }
     this.crafter.confirmation(DELETE_CONFIRMATION)
-    .afterClosed()
+    ?.afterClosed()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         filter(Boolean),
@@ -118,11 +163,17 @@ export class QuillToolbarComponent {
     ).subscribe(_ => this.draftsFacade.delete(this.draft._id));
   }
 
+  /**
+   * Change route to /form. Does nothing if no {draft}
+  */
   private goToForm(): void {
     if (!this.draft) { return; }
-    this.router.navigate(['form'], {relativeTo: this.route});
+    this.router.navigate(['form'], {relativeTo: this.activatedRoute});
   }
 
+  /**
+   * Reset the Saving State 
+  */
   ngOnDestroy() {
     this.draftsFacade.resetSaving();
   }

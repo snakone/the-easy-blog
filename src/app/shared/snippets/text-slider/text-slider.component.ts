@@ -30,12 +30,21 @@ export class TextSliderComponent {
     this.slider = document.getElementById('slides');
   }
 
+  /**
+   * Clear all the previous Intervals.
+   * Return a new Interval that slides the text.
+  */
   private createInterval(): NodeJS.Timer {
     this.timeouts.forEach((out: unknown) => window.clearTimeout(out as number))
     return setInterval(() => this.slide(1), intervalTime);
   }
 
-  public slide(value: number, clear = false): void {
+  /**
+   * Function that perform the text to slide.
+   * @param value Value to slide. 1 (right), -1 (left)
+   * @param clear If **true**, clear the current Interval.
+  */
+  public slide(value: number, clear: boolean = false): void {
     this.updateIndex(value);
     this.updateSliderStyles();
   
@@ -45,6 +54,11 @@ export class TextSliderComponent {
     }
   }
   
+  /**
+   * Update the current index of the slider.
+   * Check for out of bounds before setting the index.
+   * @param value Value to slide. 1 (right), -1 (left)
+  */
   private updateIndex(value: number): void {
     const newIndex = this.index + value;
   
@@ -57,6 +71,9 @@ export class TextSliderComponent {
     }
   }
   
+  /**
+   * Updates the CSS slider styles 'transition' and 'transform'.
+  */
   private updateSliderStyles(): void {
     if (this.slider) {
       const style = this.slider.style;
@@ -65,14 +82,25 @@ export class TextSliderComponent {
     }
   }
 
+  /**
+   * Returns a CSS value for transition using {transitionTime}.
+  */
   private createTransitionStyle(): string {
     return `all ${this.transitionTime}ms 0`;
   }
 
+  /**
+   * Returns a CSS value for transform using {index * itemWidth}.
+  */
   private createTransformStyle(): string {
     return `translate3d(-${this.index * itemWidth}px, 0, 0)`;
   }
 
+  /**
+   * Set the current {index} and {transitionTime} for each Interval loop.
+   * @param i Index to set.
+   * @param time Transition time between slides.
+  */
   private set(
     i: number,
     time: number

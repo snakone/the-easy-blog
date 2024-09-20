@@ -1,6 +1,6 @@
 import { ComponentType } from "@angular/cdk/portal";
 import { Post } from "./interface.post";
-import { DraftStatusEnum, SavingDraftType, SearchType } from "./types.enums";
+import { DraftStatusEnum, SavingDraftType, SearchType, SnackType } from "./types.enums";
 
 export interface PostHeader {
   text: string;
@@ -9,7 +9,7 @@ export interface PostHeader {
 
 export interface Snack {
   message: string | null;
-  type?: string;
+  type?: SnackType;
 }
 
 // LIST

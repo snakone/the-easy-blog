@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { User } from '@shared/types/interface.user';
@@ -19,6 +19,10 @@ import { ThemeEnum } from '@shared/types/types.enums';
 
 export class NavbarComponent {
 
+  ls = inject(StorageService);
+  crafter = inject(CrafterService);
+  userFacade = inject(UsersFacade);
+
   user$!: Observable<User | null>;
   showSearchBar = false;
   menuOpened = false;
@@ -27,15 +31,11 @@ export class NavbarComponent {
   icons = NAVBAR_ICONS;
   dropdown = NAVBAR_MENU;
 
-  constructor(
-    private ls: StorageService,
-    private crafter: CrafterService,
-    private userFcd: UsersFacade
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.mode = this.ls.getSettings(THEME_KEY) as string;
-    this.user$ = this.userFcd.user$;
+    this.user$ = this.userFacade.user$;
   }
 
   public onScroll(detected: boolean): void {
@@ -51,7 +51,7 @@ export class NavbarComponent {
   public toggleTheme(): void {
     const isDark = document.body.classList.toggle(ThemeEnum.DARK);
     this.mode = isDark ? ThemeEnum.DARK : ThemeEnum.LIGHT;
-    this.ls.setKeySettings(THEME_KEY, this.mode);
+    this.ls.setKey(THEME_KEY, this.mode);
   }
 
 }

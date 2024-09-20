@@ -14,6 +14,14 @@ export class RecentPostSkeletonComponent {
   items: number[];
 
   ngOnInit() {
+    this.fillArray();
+  }
+
+  /**
+   * Fills an array to display Skeleton Items.
+   * Uses {limit} and random number to trackId
+  */
+  private fillArray(): void {
     this.items = Array(this.limit).fill("").map(_ => Math.random());
   }
 

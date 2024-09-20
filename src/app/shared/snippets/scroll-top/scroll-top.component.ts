@@ -11,6 +11,9 @@ export class ScrollTopComponent {
 
   constructor() { }
 
+  /**
+   * Scroll to top: 0 with a smooth behaviour. {window.scrollTo()}
+  */
   public goTop(): void {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }

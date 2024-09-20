@@ -50,7 +50,7 @@
         <!-- HELP -->
         <i class="fas fa-question-circle" 
           matTooltip="Ayuda" 
-          (click)="switchAction.help()">
+          (click)="switchAction.help(obs.saving?.value)">
         </i>
         <!-- FORM -->
         <i class="fas fa-spell-check"
@@ -62,12 +62,12 @@
         <!-- CLEAN -->
         <i class="fas fa-broom"
           matTooltip="Limpiar"
-          (click)="switchAction.clean()">
+          (click)="switchAction.clean(obs.saving?.value)">
         </i>
         <!-- HELP -->
         <i class="fas fa-question-circle" 
           matTooltip="Ayuda" 
-          (click)="switchAction.help()">
+          (click)="switchAction.help(obs.saving?.value)">
         </i>
         <!-- BACK -->
         @if (form) {

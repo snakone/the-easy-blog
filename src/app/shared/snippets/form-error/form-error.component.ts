@@ -15,6 +15,9 @@ export class FormErrorComponent {
 
   constructor() { }
 
+  /**
+   * Object to map most common input errors into boolean.
+  */
   swichError: {[key: string]: () => boolean} = {
     INVALID: () => !!this.control && this.control.invalid && this.control.dirty,
     MIN_LENGTH: () => this.haveError(ValidatorEnum.MIN_LENGTH, 'minlength'),
@@ -25,7 +28,12 @@ export class FormErrorComponent {
     PASSWORD: () => this.haveError(ValidatorEnum.PASSWORD, 'password')
   }
 
-  private haveError(
+  /**
+   * Return true if the form control have errors.
+   * @param type Validator type {ValidatorEnum}
+   * @param prop The error property to check.
+  */
+  public haveError(
     type: ValidatorType, 
     prop: string
   ): boolean {

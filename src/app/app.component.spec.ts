@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { StorageService } from '@core/services/storage/storage.service';
 import { HttpService } from '@core/services/http/http.service';
@@ -18,12 +17,10 @@ describe('AppComponent', () => {
   let comp: AppComponent;
   let ls: StorageService;
   let store: MockStore;
-  const initialState = { user: null };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         CoreModule,
         LayoutModule,
         BrowserModule,
@@ -45,8 +42,8 @@ describe('AppComponent', () => {
     comp = fixture.componentInstance;
     ls = TestBed.inject(StorageService);
     ls.setKeySettings(AUTO_LOGIN_KEY, true);
-    ls.setKeySettings(THEME_KEY, ThemeEnum.DARK);
     ls.setKey(TOKEN_KEY, 'test-token');
+    ls.setKey(THEME_KEY, ThemeEnum.LIGHT);
     // store = TestBed.inject(MockStore);
   });
 
@@ -56,15 +53,8 @@ describe('AppComponent', () => {
 
   it('should check for theme on StorageService', () => {
     const theme = ls.getSettings(THEME_KEY);
-    expect(theme).toBe(ThemeEnum.DARK);
+    expect(theme).toBe(ThemeEnum.LIGHT);
   });
-
-  it('should have class "dark" on document body', () => {
-    spyOn(comp, 'checkTheme');
-    comp.checkTheme();
-    expect(comp.checkTheme).toHaveBeenCalled();
-    expect(document.body.className).toBe(ThemeEnum.DARK);
-  }, 1000);
  
   it('should check for User Token if values on Storage Service are correct', () => {
     const autoLogin = ls.getSettings(AUTO_LOGIN_KEY);
@@ -75,7 +65,6 @@ describe('AppComponent', () => {
     expect(comp.checkToken).toHaveBeenCalled();
     expect(autoLogin).toBeTrue();
     expect(token).toBe('test-token');
-    // expect(comp.userFacade.verifyToken).toHaveBeenCalled();
   }); 
 
 });

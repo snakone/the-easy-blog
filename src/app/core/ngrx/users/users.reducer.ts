@@ -14,7 +14,7 @@ export interface UserState {
   filter: FilterType;
 }
 
-export const inititalState: UserState = {
+export const initialState: UserState = {
   user: null,
   email: null,
   error: null,
@@ -25,7 +25,7 @@ export const inititalState: UserState = {
 };
 
 const featureReducer = createReducer(
-  inititalState,
+  initialState,
   // LOGIN USER
   on(UserActions.loginSuccess, (state, { user }) => ({...state, error: null, user, loaded: true })),
   on(UserActions.updateSuccess, (state, { user }) => ({...state, user })),
@@ -63,7 +63,7 @@ const featureReducer = createReducer(
     {...state, filter: { ...state.filter, ...value }}
   )),
   on(UserActions.resetFilter, (state) => (
-    {...state, filter: { ...inititalState.filter }}
+    {...state, filter: { ...initialState.filter }}
   )),
 );
 

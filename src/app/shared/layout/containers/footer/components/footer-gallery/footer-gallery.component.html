@@ -3,7 +3,7 @@
   <div class="gallery">
     @for(image of items; track image) {
       <div class="inner">
-        <img [src]="'assets/images/' + image" alt="Gallery Photo"/>
+        <img [src]="image | image" alt="Gallery Photo"/>
       </div>
     }
   </div>

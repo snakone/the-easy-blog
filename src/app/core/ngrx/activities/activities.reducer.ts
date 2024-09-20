@@ -9,7 +9,7 @@ export interface ActivitiesState {
   public: UserActivity[] | null;
 }
 
-export const inititalState: ActivitiesState = {
+export const initialState: ActivitiesState = {
   activities: null,
   error: null,
   loaded: false,
@@ -17,7 +17,7 @@ export const inititalState: ActivitiesState = {
 };
 
 const featureReducer = createReducer(
-  inititalState,
+  initialState,
   // GET
   on(ActivitiesActions.getSuccess, (state, {activities}) => ({ ...state, loaded: true, activities })),
   on(ActivitiesActions.getFailure, (state, {error}) => ({ ...state, error, loaded: false })),

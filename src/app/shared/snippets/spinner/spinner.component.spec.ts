@@ -13,7 +13,7 @@ describe('SpinnerComponent', () => {
     .compileComponents();
   });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(SpinnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -21,5 +21,19 @@ describe('SpinnerComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should not display by default', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    expect(element.children.length).toBe(0);
+  });
+
+  it('should display the spinner when loading is True', () => {
+    fixture = TestBed.createComponent(SpinnerComponent);
+    component = fixture.componentInstance;
+    component.loading = true;
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement;
+    expect(element.children.length).toBeGreaterThan(0);
   });
 });

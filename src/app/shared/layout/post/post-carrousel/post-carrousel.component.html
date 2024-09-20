@@ -5,7 +5,7 @@
       <ng-template carouselSlide>
         <div class="item">
           <figure>
-            <img [src]="'assets/images/' + item" alt="Carrousel Image"/>
+            <img [src]="item | image" alt="Carrousel Image"/>
           </figure>
           <div class="overlay">
             <div class="info">

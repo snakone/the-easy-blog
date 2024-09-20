@@ -62,6 +62,7 @@
     "@angular-devkit/build-angular": "^18.2.3",
     "@angular/cli": "^18.2.3",
     "@angular/compiler-cli": "^18.2.3",
+    "@compodoc/compodoc": "^1.1.25",
     "@ngrx/store-devtools": "^18.0.2",
     "@types/hammerjs": "^2.0.44",
     "@types/jasmine": "~5.1.2",

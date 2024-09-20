@@ -6,6 +6,7 @@ import { StorageService } from '@services/storage/storage.service';
 
 import { AUTO_LOGIN_KEY, THEME_KEY, TOKEN_KEY } from '@shared/data/constants';
 import { ThemeEnum } from '@shared/types/types.enums';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent {
   ls = inject(StorageService);
   pwa = inject(PWAService);
   userFacade = inject(UsersFacade);
+  document = inject(DOCUMENT);
 
   constructor() {
     this.checkTheme();
@@ -30,8 +32,8 @@ export class AppComponent {
    * Toggle document.body class if "Dark"
   */
   public checkTheme(): void {
-    if (this.ls.getSettings(THEME_KEY) === ThemeEnum.DARK) {
-      document.body.classList.toggle(ThemeEnum.DARK);
+    if (this.ls.get(THEME_KEY) === ThemeEnum.DARK) {
+      this.document.body.classList.toggle(ThemeEnum.DARK);
     }
   }
 

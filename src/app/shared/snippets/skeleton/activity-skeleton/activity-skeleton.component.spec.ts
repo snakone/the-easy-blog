@@ -18,4 +18,15 @@ describe('ActivitySkeletonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should apply the "last" class when last is true', () => {
+    fixture = TestBed.createComponent(ActivitySkeletonComponent);
+    component = fixture.componentInstance;
+    component.last = true;
+    fixture.detectChanges();
+
+    const element: HTMLElement = fixture.nativeElement;
+    const article = element.children[0];
+    expect(article.className).toBe("last");
+  });
 });
