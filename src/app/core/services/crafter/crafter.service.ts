@@ -20,7 +20,9 @@ export class CrafterService {
 
   public dialog<T>({...args}: FormattedDialog<T>): MatDialogRef<T> {
     return this.matDialog.open(args.component, {
-      data: args.data, id: args.id || '', panelClass: args.css
+      data: args.data, id: args.id || '', panelClass: args.css,
+      enterAnimationDuration: 0,
+      exitAnimationDuration: 0
     });
   }
 
@@ -54,7 +56,9 @@ export class CrafterService {
     { title, message }: ConfirmationDialogProps
   ): MatDialogRef<ConfirmationDialogComponent> {
     return this.matDialog.open(ConfirmationDialogComponent, {
-      data: { title, message }
+      data: { title, message },
+      enterAnimationDuration: 0,
+      exitAnimationDuration: 0
     })
   }
 

@@ -239,6 +239,10 @@ button.formatted {
   }
 }
 
+body.dark .action button.formatted:hover {
+  color: var(--light-color) !important;
+}
+
 // CONDITIONS
 .conditions {
   & .mat-mdc-tab {

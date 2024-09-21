@@ -85,8 +85,7 @@ export class CreateContentComponent {
        distinctUntilChanged(),
        map(([_, sv]) => _.content as any)
      )
-     .subscribe((delta: DeltaStatic) => 
-     this.onChange(delta));
+     .subscribe((delta: DeltaStatic) => this.onChange(delta));
   }
 
   private onChange(
@@ -99,6 +98,7 @@ export class CreateContentComponent {
     delta: DeltaStatic
   ): void {
     if (delta.ops[0] && delta.ops[0].insert === '\n') {
+      this.save(false);
       return;
     }
     const draft = { title: 'Boceto ', message: delta };
@@ -111,7 +111,11 @@ export class CreateContentComponent {
   private updateDraft(
     delta: DeltaStatic
   ): void {
-    if (this.draft.temporal) { return; }
+    if (this.draft.temporal) {
+      this.save(false);
+      return;
+     }
+     
     const draft = this.setDeltaAndUpdate(delta);
     this.save(false);
     this.draftsFacade.setPreview(draft);

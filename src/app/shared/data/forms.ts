@@ -2,6 +2,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CreateDraftForm, EditProfileForm, SignInForm, SignUpForm } from "@shared/types/interface.form";
 import { IMAGE_PATTERN, URL_PATTERN, USER_NAME_PATTERN } from "./patterns";
 import { User } from "@shared/types/interface.user";
+import { PostCategory } from "@shared/types/interface.post";
 
 export const SIGN_UP_FORM: SignUpForm = {
   name: new FormControl<string>(null, [
@@ -78,7 +79,7 @@ export const CREATE_DRAFT_FORM = () => new FormGroup<CreateDraftForm>({
     Validators.required,
     Validators.minLength(10)
    ]),
-   category: new FormControl<string>(null, [Validators.required]),
+   category: new FormControl<PostCategory>(null, [Validators.required]),
    cover: new FormControl<string>(null, [
     Validators.required,
     Validators.pattern(IMAGE_PATTERN)

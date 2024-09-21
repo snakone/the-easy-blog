@@ -1,7 +1,7 @@
 import { DraftStatusEnum } from '@shared/types/types.enums';
 import { DraftStatusPipe } from './draft-status.pipe';
 
-fdescribe('DraftStatusPipe', () => {
+describe('DraftStatusPipe', () => {
   let pipe: DraftStatusPipe;
 
   beforeEach(() => {

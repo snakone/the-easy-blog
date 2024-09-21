@@ -1,55 +1,55 @@
-# Lista de Tareas Pendientes
+# To Do List
 
-Este archivo contiene una lista de tareas pendientes, mejoras propuestas y cambios futuros para este proyecto.
+This file contains a list of pending tasks, proposed improvements and future changes for this project.
 
-## Prioridades
+## Priorities
 
-- 🔴 **Alta prioridad**: Debe completarse lo antes posible.
-- 🟠 **Media prioridad**: Importante, pero puede esperar.
-- 🟢 **Baja prioridad**: Mejoras o funcionalidades menores.
-
----
-
-## Tareas Pendientes
-
-### 🔴 Alta prioridad
-
-- [ ] Mejorar el tiempo de carga inicial de la aplicación optimizando la carga de módulos en Angular.
-
-### 🟠 Media prioridad
-
-- [ ] Agregar funcionalidad para que los usuarios puedan recuperar sus contraseñas a través del correo electrónico.
-- [ ] Implementar soporte completo para accesibilidad (WCAG 2.1).
-- [ ] Mejorar la cobertura de pruebas unitarias para los componentes de usuario.
-
-### 🟢 Baja prioridad
-
-- [ ] Implementar animaciones sutiles para mejorar la experiencia de usuario en las transiciones de página.
-- [ ] Crear documentación detallada para desarrolladores externos sobre cómo funciona la aplicación.
-- [ ] Optimizar las imágenes del sitio para mejorar la carga en dispositivos móviles.
+- 🔴 **High priority**: Should be completed as soon as possible.
+- 🟠 **Medium priority**: Important, but can wait.
+- 🟢 **Low priority**: Minor enhancements or functionality.
 
 ---
 
-## Funcionalidades Futuras
+## Pending Tasks
 
-- [ ] Implementar autenticación de usuarios mediante OAuth (Google, Facebook, etc.).
-- [ ] Agregar integración con un sistema de comentarios para el blog.
+### 🔴 High priority
+
+- [ ] Improve initial application load time by optimizing module loading in Angular.
+
+### 🟠 Medium priority.
+
+- [ ] Add functionality for users to retrieve their passwords via email.
+- [ ] Implement full support for accessibility (WCAG 2.1).
+- [ ] Improve unit test coverage for user components.
+
+### 🟢 Low priority
+
+- [ ] Implement subtle animations to improve user experience on page transitions.
+- [ ] Create detailed documentation for external developers on how the application works.
+- [ ] Optimize site images to improve loading on mobile devices.
 
 ---
 
-## Mejoras Propuestas
+## Future Functionalities
+
+- [ ] Implement user authentication via OAuth (Google, Facebook, etc.).
+- [ ] Add integration with a blog commenting system.
+
+---
+
+## Proposed Enhancements
 
 - [ ] TBD
 
 ---
 
-## Ideas por Explorar  
+## Ideas to Explore  
 
-- [ ] Integrar un chatbot para asistencia al usuario.
+- [ ] Integrate a chatbot for user assistance.
 
 ---
 
-## Tareas Completadas
+## Tasks Completed
 
-- [x] Actualizar a Angular 18.
-- [x] Reescribir todo el HTML con el nuevo sintax de Angular 18.
+- [x] Upgrade to Angular 18.
+- [x] Rewrite all HTML with new Angular 18 syntax.

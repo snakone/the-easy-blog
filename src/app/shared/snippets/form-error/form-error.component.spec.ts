@@ -44,7 +44,7 @@ describe('FormErrorComponent', () => {
     const error = component.swichError.MIN_LENGTH();
     expect(error).toBeTrue();
     const element: HTMLElement = fixture.nativeElement;
-    const errorElement = element.querySelector(" .form-error");
+    const errorElement = element.querySelector(".form-error");
     expect(errorElement.children[0].textContent).toBe("Tamaño mínimo: 10");
     expect(String(component.control.value).length).toBe(4);
   });

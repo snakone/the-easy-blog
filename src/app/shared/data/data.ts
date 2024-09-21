@@ -28,7 +28,7 @@ export const DUMMY_POST: Post[] = [
   {
     _id: '1',
     title: 'LOREM IPSUM, DOLOR SIT AMET CONSECTETUR ADIPISICING.',
-    category: 'Home & Living',
+    category: 'Ciéncia',
     author: 'Elisa Park',
     createdAt: new Date('Sep, 05 2019'),
     cover: 'assets/images/05-img.jpg',
@@ -39,7 +39,7 @@ export const DUMMY_POST: Post[] = [
   {
     _id: '2',
     title: 'LOREM IPSUM, DOLOR SIT AMET CONSECTETUR ADIPISICING ELIT OUSL BAK.',
-    category: 'Amazing Food',
+    category: 'Ingeniería',
     author: 'Marisa Hudson',
     createdAt: new Date('Sep, 06 2019'),
     status: DraftStatusEnum.NOT_SEEN,
@@ -51,7 +51,7 @@ export const DUMMY_POST: Post[] = [
   {
     _id: '3',
     title: 'LOREM IPSUM, DOLOR SIT AMET CONSECTETUR ADIPISICING ELIT OUSL BAK.',
-    category: 'Lifestyle',
+    category: 'Otro',
     author: 'Jhone Albert',
     createdAt: new Date('Sep, 07 2019'),
     status: DraftStatusEnum.PENDING,
@@ -61,7 +61,7 @@ export const DUMMY_POST: Post[] = [
   {
     _id: '4',
     title: 'Sed quis sollicitudin eros, non lobortis purus.',
-    category: 'Travel',
+    category: 'Videojuegos',
     author: 'Albert Jhone',
     createdAt: new Date('Sep, 08 2019'),
     status: DraftStatusEnum.APPROVED,
@@ -71,7 +71,7 @@ export const DUMMY_POST: Post[] = [
   {
     _id: '5',
     title: 'LOREM IPSUM, DOLOR SIT AMET CONSECTETUR ADIPISICING ELIT OUSL BAK.',
-    category: 'Miscellenious',
+    category: 'Ciéncia',
     author: 'Alfred Hannog',
     createdAt: new Date('Sep, 09 2019'),
     status: DraftStatusEnum.SEEN,
@@ -399,8 +399,6 @@ export const SOCIAL_LIST: IconList[] = [
   { label: 'github', icon: 'fab fa-github' },
   { label: 'portfolio', icon: 'fas fa-link' },
 ];
-
-export const EMPTY_DRAFT: Post = {[TITLE_KEY]: '', [CATEGORY_KEY]: '', [COVER_KEY]: '', [INTRO_KEY]: ''};
 
 export const SEARCH_DEFAULT_PLACEHOLDER = 'Busca por título, categoría, autor, estado del boceto...';
 

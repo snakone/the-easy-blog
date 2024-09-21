@@ -2,7 +2,7 @@
   <div class="wrapper">
     <!-- TOOLBAR -->
     @for(toolbar of toolbarItems; track toolbar.icon) {
-      <div>
+      <div class="item">
         <i [class]="toolbar.icon"></i>
         <h2>{{toolbar.label}}</h2>
         <p [innerHTML]="toolbar.message | Sanitizer:'html'"></p>
@@ -11,7 +11,7 @@
     <hr>
     <!-- ACTIONS -->
     @for(action of actionItems; track action.icon) {
-      <div>
+      <div class="item">
         <i [class]="action.icon"></i>
         <h2>{{action.label}}</h2>
         <p [innerHTML]="action.message | Sanitizer:'html'"></p>

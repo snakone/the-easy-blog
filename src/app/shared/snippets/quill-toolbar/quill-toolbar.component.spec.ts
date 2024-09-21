@@ -114,7 +114,7 @@ describe('QuillToolbarComponent', () => {
   it('should show confirmation dialog when click on "save"', fakeAsync(() => {
     spyOn(crafter, 'confirmation');
     const element: HTMLElement = fixture.nativeElement;
-    const saveButton = element.querySelector(" .fa-plus");
+    const saveButton = element.querySelector(".fa-plus");
     saveButton.dispatchEvent(new MouseEvent('click'));
     tick(200);
     expect(crafter.confirmation).toHaveBeenCalledWith(SAVE_CONFIRMATION);
@@ -123,7 +123,7 @@ describe('QuillToolbarComponent', () => {
   it('should show preview dialog when click on "preview"', fakeAsync(() => {
     spyOn(crafter, 'dialog');
     const element: HTMLElement = fixture.nativeElement;
-    const previewButton = element.querySelector(" .fa-eye");
+    const previewButton = element.querySelector(".fa-eye");
     previewButton.dispatchEvent(new MouseEvent('click'));
     tick(200);
     expect(crafter.dialog).toHaveBeenCalledWith(PREVIEW_DRAFT_DIALOG);
@@ -132,7 +132,7 @@ describe('QuillToolbarComponent', () => {
   it('should show help dialog when click on "help"', fakeAsync(() => {
     spyOn(crafter, 'dialog');
     const element: HTMLElement = fixture.nativeElement;
-    const helpButton = element.querySelector(" .fa-question-circle");
+    const helpButton = element.querySelector(".fa-question-circle");
     helpButton.dispatchEvent(new MouseEvent('click'));
     tick(200);
     expect(crafter.dialog).toHaveBeenCalledWith(QUILL_HELP_DIALOG);
@@ -143,14 +143,14 @@ describe('QuillToolbarComponent', () => {
     fixture.detectChanges();
     spyOn(crafter, 'dialog');
     const element: HTMLElement = fixture.nativeElement;
-    const helpButton = element.querySelector(" .fa-plus");
+    const helpButton = element.querySelector(".fa-plus");
     expect(helpButton.classList).toContain("disabled");
   }));
 
   it('should call the {quillSrv.convertToHTML} to download the current {draft}', fakeAsync(() => {
     spyOn(quillService, 'convertToHTML');
     const element: HTMLElement = fixture.nativeElement;
-    const downloadButton = element.querySelector(" .fa-cloud-download-alt");
+    const downloadButton = element.querySelector(".fa-cloud-download-alt");
     downloadButton.dispatchEvent(new MouseEvent('click'));
     tick(200);
     expect(quillService.convertToHTML).toHaveBeenCalledWith(component.draft);
@@ -162,8 +162,8 @@ describe('QuillToolbarComponent', () => {
     fixture.detectChanges();
     component.saving$.pipe(filter(res => Boolean(res))).subscribe(_ => {
       const element: HTMLElement = fixture.nativeElement;
-      const temporalIcon = element.querySelector(" .temporal .fa-exclamation-triangle");
-      const saveManualButton = element.querySelector(" .temporal .fa-save");
+      const temporalIcon = element.querySelector(".temporal .fa-exclamation-triangle");
+      const saveManualButton = element.querySelector(".temporal .fa-save");
       saveManualButton.dispatchEvent(new MouseEvent('click'));
       expect(temporalIcon.getAttribute("ng-reflect-message")).toBe("Guardado manual");
       expect(createDraftService.onSaveManual).toHaveBeenCalledWith(component.draft._id);

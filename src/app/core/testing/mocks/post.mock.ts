@@ -1,4 +1,53 @@
-export const MOCK_POST_MESSAGE = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nisi culpa pariatur vitae? Eligendi hic adipisci
+import { Post } from "@shared/types/interface.post"
+import { DraftTypeEnum } from "@shared/types/types.enums"
+import { DeltaStatic } from "quill";
+
+
+export const MOCK_DRAFT: Post = {
+  _id: 'test-id',
+  active: false,
+  adminSeenOnce: false,
+  author: 'test',
+  category: "Actualidad",
+  likes: 2,
+  temporal: false,
+  type: DraftTypeEnum.DRAFT,
+  title: 'test-draft',
+  views: 1,
+  slug: 'test-draft',
+  user: 'test-id',
+  message: {
+    "ops": [
+        {
+            "insert": "HELLO THIS IS A TEST MESSAGE\n"
+        }
+    ]
+  } as DeltaStatic
+}
+
+export const MOCK_POST: Post = {
+  _id: 'test-id',
+  active: false,
+  adminSeenOnce: false,
+  author: 'test',
+  category: "Actualidad",
+  likes: 1,
+  temporal: false,
+  type: DraftTypeEnum.POST,
+  title: 'test-post',
+  views: 4,
+  slug: 'test-post',
+  user: 'test-user',
+  message: {
+    "ops": [
+        {
+            "insert": "HELLO THIS IS A TEST MESSAGE\n"
+        }
+    ]
+  } as DeltaStatic
+}
+
+export const MOCK_POST_MESSAGE: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nisi culpa pariatur vitae? Eligendi hic adipisci
 consectetur delectus numquam temporibus ad ullam nobis? Nesciunt animi cupiditate nemo inventore, blanditiis itaque aut
 repellendus, delectus recusandae expedita doloremque ipsum possimus impedit temporibus. Corrupti, quo impedit quisquam
 facilis ullam libero alias? Unde iste dolore officiis magnam? Aspernatur maxime recusandae cum deserunt quidem similique
@@ -24,4 +73,4 @@ explicabo temporibus error repellat rem quisquam voluptatem tempora aliquid illu
 atque ad nisi possimus. Optio libero asperiores obcaecati autem deserunt perferendis esse labore veniam quia maxime
 impedit ex maiores ducimus recusandae minus rem quisquam ipsam, sapiente, dicta quasi neque? Explicabo praesentium
 reprehenderit, asperiores doloremque dolore vero et nulla error mollitia fugiat eligendi, doloribus recusandae aperiam
-omnis atque veritatis?`
+omnis atque veritatis?`;

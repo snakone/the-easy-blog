@@ -1,35 +1,35 @@
-# Guía para contribuir
+# Contributor's Guide
 
-¡Gracias por considerar contribuir a este proyecto! A continuación te ofrecemos una serie de pautas para facilitar tu colaboración.
+Thank you for considering contributing to this project! Here are some guidelines to make it easier for you to contribute.
 
-## Cómo reportar errores (issues)
+## How to report issues
 
-Si encuentras un error, por favor sigue estos pasos:
+If you find an error, please follow these steps:
 
-1. **Busca problemas existentes**: Asegúrate de que no haya un issue existente que ya describa el problema.
+1. **Look for existing issues**: Make sure there is no existing issue that already describes the problem.
 
-2. **Abre un nuevo issue**: Si no encuentras un problema similar, abre un nuevo [issue](https://github.com/snakone/the-formatted-blog/issues) proporcionando:
-   - Descripción clara del problema.
-   - Pasos para reproducirlo.
-   - Resultados esperados y los resultados obtenidos.
-   - Información del entorno (navegador, sistema operativo, etc.).
+2. **Open a new issue**: If you do not find a similar problem, open a new [issue](https://github.com/snakone/the-formatted-blog/issues) by providing:
+   - Clear description of the problem.
+   - Steps to reproduce it.
+   - Expected results and the results obtained.
+   - Environment information (browser, operating system, etc.).
 
-3. **Etiqueta el problema**: Intenta asignar una etiqueta (bug, mejora, etc.) para clasificar el problema correctamente.
+3. **Label the problem**: Try to assign a label (bug, improvement, etc.) to classify the problem correctly.
 
-## Sugerir mejoras
+## Suggest improvements
 
-Si tienes una idea para mejorar el proyecto:
+If you have an idea to improve the project:
 
-1. Abre un issue con la etiqueta `enhancement`.
-2. Explica el motivo de la mejora y cómo beneficiará a los usuarios.
-3. Proporciona detalles específicos sobre cómo te gustaría implementarla, si es posible.
+1. Open an issue with the `enhancement` tag.
+2. Explain the reason for the enhancement and how it will benefit users.
+3. Provide specific details on how you would like to implement it, if possible.
 
-## Contribuir con código
+## Contribute code
 
-Si deseas contribuir con código al proyecto:
+If you wish to contribute code to the project:
 
-1. **Fork el repositorio** y clona tu copia localmente.
+1. **Fork the repository** and clone your copy locally.
 
-2. **Crea una nueva rama** para tu trabajo, siguiendo el formato `feature/nombre-de-la-funcionalidad` o `fix/nombre-del-arreglo`.
-   ```bash
-   git checkout -b feature/nueva-funcionalidad
+2. **Create a new branch** for your work, following the format `feature/feature-name` or `fix/array-name`.
+   ````bash
+   git checkout -b feature/new-functionality

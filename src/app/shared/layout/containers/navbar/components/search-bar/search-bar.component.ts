@@ -16,7 +16,7 @@ const closeDelay = 800;
 export class SearchBarComponent {
 
   @Output() closed = new EventEmitter<void>();
-  value = 'sergi';
+  value = '';
   placeholder = '';
   index = 0;
   sentence = SEARCH_SENTENCE;

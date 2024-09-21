@@ -1,4 +1,5 @@
 import { FormControl } from "@angular/forms";
+import { PostCategory } from "./interface.post";
 
 export interface SignInForm {
   email: FormControl<string>;
@@ -24,7 +25,7 @@ export interface EditProfileForm {
 
 export interface CreateDraftForm {
   title: FormControl<string>;
-  category: FormControl<string>;
+  category: FormControl<PostCategory>;
   cover: FormControl<string>;
   intro: FormControl<string>;
 }

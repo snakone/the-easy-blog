@@ -10,6 +10,9 @@ import { CARROUSEL_OPTS } from '@shared/data/data';
 
 export class PostCarrouselComponent {
 
+  /**
+   * Carrousel options. <owl-carousel-o>
+  */
   customOptions = CARROUSEL_OPTS;
 
   items = [

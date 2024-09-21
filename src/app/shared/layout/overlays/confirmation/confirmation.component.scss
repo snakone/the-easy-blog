@@ -12,6 +12,7 @@ h1 {
 
   & button {
     color: var(--dark-color);
+    margin-left: 6px;
 
     &[cdkFocusInitial] {
       color: var(--light-color);

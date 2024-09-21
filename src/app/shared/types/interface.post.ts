@@ -8,7 +8,7 @@ export interface Post {
   _id?: string; // Mongo ID
   slug?: string;
   title?: string;
-  category?: string;
+  category?: PostCategory;
   message?: DeltaStatic; // Quill Delta
   author?: string;
   cover?: string; // Image
@@ -50,3 +50,16 @@ export interface UpdateDraftKeyData {
   admin?: boolean;
   showDialog?: boolean;
 }
+
+export type PostCategory = 
+  'Actualidad' |
+  'Naturaleza' |
+  'Cultura' | 
+  'Ciéncia' |
+  'Política' |
+  'Ingeniería' |
+  'Humor' |
+  'Internet' |
+  'Videojuegos' |
+  'Filosofía' |
+  'Otro';

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 
 import { User } from '@shared/types/interface.user';
 import { UsersFacade } from '@store/users/users.facade';
@@ -10,6 +10,7 @@ import { NAVBAR_ICONS, NAVBAR_MENU } from '@shared/data/data';
 import { THEME_KEY } from '@shared/data/constants';
 import { LOGIN_DIALOG } from '@shared/data/dialogs';
 import { ThemeEnum } from '@shared/types/types.enums';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +23,7 @@ export class NavbarComponent {
   ls = inject(StorageService);
   crafter = inject(CrafterService);
   userFacade = inject(UsersFacade);
+  router = inject(Router);
 
   user$!: Observable<User | null>;
   showSearchBar = false;
@@ -36,6 +38,14 @@ export class NavbarComponent {
   ngOnInit(): void {
     this.mode = this.ls.getSettings(THEME_KEY) as string;
     this.user$ = this.userFacade.user$;
+    this.subToRouter();
+  }
+
+  private subToRouter(): void {
+    this.router.events.pipe(
+      filter((e): e is NavigationStart => (e instanceof NavigationStart)),
+      filter(_ => this.menuOpened)
+    ).subscribe(_ => this.menuOpened = false);
   }
 
   public onScroll(detected: boolean): void {

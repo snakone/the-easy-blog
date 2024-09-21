@@ -1,14 +1,14 @@
 # Changelog
 
-Todos los cambios notables en este proyecto se documentarán en este archivo.
+All notable changes in this project will be documented in this file.
 
-El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Version 0.18.0] - 20/09/2024
 
-### Agregado
-- Añadida documentación usando `npm run doc`
-- Añadido Test unitarios para varios componentes
+### Added
+- Added documentation using `npm run doc`.
+- Added unit tests for several components
 
-### Corregido
-- Typo en los `initialState` de los Stores.
+### Fixed
+- Typo in the `initialState` of the Stores.
