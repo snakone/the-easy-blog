@@ -80,5 +80,8 @@
     "ts-node": "~10.9.1",
     "tslint": "~6.1.0",
     "typescript": "^5.5.4"
+  },
+  "optionalDependencies": {
+  "@rollup/rollup-linux-x64-gnu": "*"
   }
 }
