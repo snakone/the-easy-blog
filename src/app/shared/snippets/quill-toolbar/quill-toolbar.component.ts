@@ -19,7 +19,8 @@ import {
   SAVE_CONFIRMATION, 
   DELETE_CONFIRMATION, 
   PREVIEW_DRAFT_DIALOG, 
-  QUILL_HELP_DIALOG 
+  QUILL_HELP_DIALOG, 
+  CHECK_DRAFT_STATUS_CONFIRMATION
 } from '@shared/data/dialogs';
 
 @Component({
@@ -88,6 +89,7 @@ export class QuillToolbarComponent {
     delete: (saving: boolean) => this.delete(saving),
     download: (saving: boolean) => this.download(saving),
     help: (saving: boolean) => this.help(saving),
+    status: (saving: boolean) => this.status(saving),
     form: () => this.goToForm()
   };
 
@@ -101,7 +103,7 @@ export class QuillToolbarComponent {
   private new(saving: boolean): void {
     if (!this.draft || saving || this.draft.temporal) { return; }
     this.crafter.confirmation(SAVE_CONFIRMATION)
-    ?.afterClosed()
+     ?.afterClosed()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         filter(Boolean),
@@ -136,6 +138,21 @@ export class QuillToolbarComponent {
   private download(saving: boolean): void {
     if (!this.draft || saving) { return; }
     this.quillSrv.convertToHTML(this.draft);
+  }
+
+  /**
+   * Navigates to the {draft} single page to check the status.
+   * Ask for confirmation.
+   * @param saving Saving State
+  */
+  private status(saving: boolean): void {
+    if (!this.draft || saving || !this.draft.slug) { return; }
+    this.crafter.confirmation(CHECK_DRAFT_STATUS_CONFIRMATION)
+     ?.afterClosed()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter(Boolean),
+    ).subscribe(_ => this.router.navigateByUrl("draft/" + this.draft.slug));
   }
 
   /**

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LayoutModule } from '@shared/layout/layout.module';
-import { AdminRoutingModule } from './admin-routing.module';
+import { AdminRoutingModule } from './admin.routing';
 import { AdminComponent } from './admin.component';
 import { AdminContentComponent } from './components/admin-content/admin-content.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';

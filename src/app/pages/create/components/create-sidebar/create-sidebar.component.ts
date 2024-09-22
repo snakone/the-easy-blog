@@ -78,7 +78,8 @@ export class CreateSidebarComponent {
   private checkCollapseResize(): void {
     window.addEventListener(RESIZE_EVENT, () => {
       document.body.clientWidth < 984 ? 
-        this.collaped = false : this.collaped = this.originalCollapsed;
+        this.collaped = false : 
+        this.collaped = this.originalCollapsed;
       this.changeRef.detectChanges();
     })
   }

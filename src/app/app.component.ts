@@ -32,7 +32,7 @@ export class AppComponent {
    * Toggle document.body class if "Dark"
   */
   public checkTheme(): void {
-    if (this.ls.get(THEME_KEY) === ThemeEnum.DARK) {
+    if (this.ls.getSettings(THEME_KEY) === ThemeEnum.DARK) {
       this.document.body.classList.toggle(ThemeEnum.DARK);
     }
   }

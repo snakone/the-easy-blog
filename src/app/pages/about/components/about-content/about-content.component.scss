@@ -1,0 +1,14 @@
+@import 'mixins/mixins.scss';
+
+.wrapper {
+  min-height: 250px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 1.8rem;
+
+  @media (max-width: 550px) {
+    margin-top: 8px;
+  }
+}

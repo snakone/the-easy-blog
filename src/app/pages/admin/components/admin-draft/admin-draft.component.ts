@@ -74,7 +74,6 @@ export class AdminDraftComponent {
   private setPendingStatus(status: DraftStatusEnum): void {
     this.markAsPending = status === DraftStatusEnum.PENDING;
     this.originalPending = status === DraftStatusEnum.PENDING;
-
   }
 
   public publish(): void {

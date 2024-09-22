@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ConditionsRoutingModule } from './conditions-routing.module';
+import { ConditionsRoutingModule } from './conditions.routing';
 import { ConditionsComponent } from './conditions.component';
 import { LayoutModule } from '@shared/layout/layout.module';
 

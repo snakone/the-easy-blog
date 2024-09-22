@@ -1,0 +1,13 @@
+<div class="animated fadeIn">
+  <div class="wrapper">
+    <app-action-bar [text]="text"
+                    buttonText="Subscríbete"
+                    (function)="notification()"
+                    [margin]="true"/>
+  </div>
+  <section class="about-content">
+    <app-section [margin]="false">
+      <app-about-content/>
+    </app-section>
+  </section>
+</div>

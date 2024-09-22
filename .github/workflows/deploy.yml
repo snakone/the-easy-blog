@@ -1,36 +1,30 @@
-name: Build and Deploy Angular App and Documentation
+# name: Build and Deploy Angular App and Documentation
 
-on:
-  push:
-    branches:
-      - develop
+# on:
+#   push:
+#     branches:
+#       - develop
 
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      # 1. Checkout the Angular app repository
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+#     steps:
+#       # 1. Checkout the Angular app repository
+#       - name: Checkout Repository
+#         uses: actions/checkout@v4
 
-      # 2. Install dependencies
-      - name: Install Dependencies
-        run: |
-          npm install --force
+#       # 2. Install dependencies
+#       - name: Install Dependencies
+#         run: |
+#           npm install --force
 
-      # 3. Generate Documentation
-      - name: Generate Documentation
-        run: |
-          npm run doc
+#       # 3. Generate Documentation
+#       - name: Generate Documentation
+#         run: |
+#           npm run doc
 
-      # 4. Deploy Documentation to Render using Deploy Hook
-      - name: Deploy Documentation to Render
-        run: |
-          cd documentation
-          git init
-          git remote show
-          git remote add origin https://github.com/snakone/the-formatted-docs
-          git add .
-          git commit -m "New Documentation Deploy"
-          git push origin master
+#       # 4. Deploy Documentation to Render using Deploy Hook
+#       - name: Deploy Documentation to Render
+#         run: |
+

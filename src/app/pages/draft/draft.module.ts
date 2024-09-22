@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DraftRoutingModule } from './draft-routing.module';
+import { DraftRoutingModule } from './draft.routing';
 import { DraftComponent } from './draft.component';
 import { DraftContentComponent } from './components/draft-content/draft-content.component';
 import { DraftSidebarComponent } from './components/draft-sidebar/draft-sidebar.component';

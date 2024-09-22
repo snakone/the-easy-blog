@@ -43,7 +43,10 @@
              [matTooltip]="(!obs.saving?.value && draft) ? item.label : null"
              (click)="switchAction[item.action](obs.saving?.value)"
              [ngClass]="{'disabled': 
-                obs.saving?.value || !draft || (draft.temporal && (item.action === 'new'))
+                obs.saving?.value || 
+                !draft || 
+                (draft.temporal && (item.action === 'new')) || 
+                (item.action === 'status' && !draft.slug)
              }">
           </i>
         }

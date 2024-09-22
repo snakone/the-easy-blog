@@ -37,6 +37,11 @@ export const LOGOUT_CONFIRMATION: ConfirmationDialogProps = {
   message: '¿Quieres desconectar tu cuenta? Tendrás que volver a iniciar sesión para acceder a tus bocetos.'
 };
 
+export const CHECK_DRAFT_STATUS_CONFIRMATION: ConfirmationDialogProps = {
+  title: 'Saliendo del editor...',
+  message: '¿Estás seguro de que quieres salir? Los cambios no guardados se perderán.'
+};
+
 export const PREVIEW_DRAFT_DIALOG: FormattedDialog<DraftPreviewDialogComponent> = {
   component: DraftPreviewDialogComponent,
   css: 'preview'

@@ -64,6 +64,12 @@ const routes: Routes = [
        .then(mod => mod.ConditionsModule), data: { name: 'Conditions' }
   },
   {
+    path: 'about',
+    loadChildren: () =>
+      import('./pages/about/about.module')
+       .then(mod => mod.AboutModule), data: { name: 'About' }
+  },
+  {
     path: 'search',
     loadChildren: () =>
       import('./pages/search/search.module')

@@ -37,14 +37,6 @@ $icon-size: 16px;
     }
   }
 
-  // SUCCESS
-  & i.fa-check { 
-    top: 0;
-    color: var(--success-color);
-    margin-right: 1rem;
-    font-size: $icon-size;
-  }
-
   // SAVING SPINNER
   & i.fa-spinner.fa-pulse {
     font-size: $icon-size;
@@ -63,6 +55,7 @@ $icon-size: 16px;
     &:nth-child(2) {
       margin-left: 23px;
       margin-right: 5px;
+      top: 2px !important;
 
       @media(max-width: 450px) {
         margin-left: 12px;
@@ -76,6 +69,21 @@ $icon-size: 16px;
         filter: invert(1);
       }
     }
+
+    // STATUS
+    &.fa-newspaper {
+      top: 2px !important;
+      margin-left: 3px;
+      margin-right: 6px;
+    }
+  }
+
+  // SUCCESS
+  & i.fa-check { 
+    top: 0;
+    color: var(--success-color);
+    margin-right: 1rem;
+    font-size: $icon-size;
   }
 
   & i.fa-pulse {
@@ -89,11 +97,11 @@ $icon-size: 16px;
 
   // GO TO FORM
   & i.fa-spell-check {
-    margin-left: 10px;
+    margin-left: 4px;
     color: var(--contrast-color);
 
     &.disabled {
-      opacity: .7;
+      opacity: .5;
     }
   }
 
