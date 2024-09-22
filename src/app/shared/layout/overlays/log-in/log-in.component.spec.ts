@@ -14,9 +14,8 @@ import { appReducers } from '@core/ngrx/ngrx.index';
 import { FormErrorComponent } from '@shared/snippets/form-error/form-error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { REMEMBER_EMAIL_KEY, USER_ID_KEY } from '@shared/data/constants';
-import { Observable, of } from 'rxjs';
 
-fdescribe('LogInDialogComponent', () => {
+describe('LogInDialogComponent', () => {
   let component: LogInDialogComponent;
   let fixture: ComponentFixture<LogInDialogComponent>;
   let ls: StorageService;

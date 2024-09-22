@@ -3,7 +3,6 @@ import { Post, SearchResultAmount } from '@shared/types/interface.post';
 import { CheckStatusList } from '@shared/types/interface.server';
 import { DraftStatusEnum, DraftTypeEnum } from '@shared/types/types.enums';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { TITLE_KEY, CATEGORY_KEY, COVER_KEY, INTRO_KEY } from './constants';
 import { SearchResult } from '@shared/types/interface.user';
 
 export const CARROUSEL_OPTS: OwlOptions = {

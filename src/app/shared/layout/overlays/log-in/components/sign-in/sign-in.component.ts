@@ -3,7 +3,8 @@ import {
   ChangeDetectionStrategy, 
   Output, 
   EventEmitter, 
-  Input
+  Input,
+  inject
 } from '@angular/core';
 
 import { AbstractControl, FormGroup } from '@angular/forms';
@@ -24,45 +25,64 @@ import { EMAIL_KEY, PASSWORD_KEY } from '@shared/data/constants';
 
 export class SignInComponent {
 
+  dialogRef = inject(MatDialogRef<LogInDialogComponent>);
+  userFacade = inject(UsersFacade);
+
   @Output() register = new EventEmitter<void>();
   signInForm!: FormGroup<SignInForm>;
 
+  /**
+   * If value and {signInForm}, set the email to the Form.
+  */
   @Input() set rememberEmail(value: string) {
     if (value && this.signInForm) { this.patchAndDirty(value); }
   };
 
-  constructor(
-    public dialogRef: MatDialogRef<LogInDialogComponent>,
-    private userFcd: UsersFacade
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.createSignInForm();
   }
 
+  /**
+   * Function to create the {SIGN_IN_FORM}
+  */
   private createSignInForm(): void {
     this.signInForm = SIGN_IN_FORM();
   }
 
+  /**
+   * Function to handle form submit. Sends {email} and {password}
+  */
   public onSubmit(): void {
     if (this.signInForm.invalid) { return; }
     const { email, password } = this.signInForm.value;
-    this.userFcd.login(email, password);
+    this.userFacade.login(email, password);
     this.dialogRef.close();
   }
 
+  /**
+   * Output to emit User wants to register.
+  */
   public signUp(): void {
     this.register.emit();
   }
 
   public recover(): void {
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
 
+  /**
+   * Function to get the form control.
+  */
   private getControl(name: string): AbstractControl | null {
     return this.signInForm.get(name);
   }
 
+  /**
+   * Patch the Form email control and mark as dirty.
+   * @param value The value to set.
+  */
   private patchAndDirty(value: string): void {
     this.signInForm.controls.email.patchValue(value);
     this.signInForm.controls.email.markAsDirty();
