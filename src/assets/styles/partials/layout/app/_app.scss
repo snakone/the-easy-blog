@@ -178,7 +178,7 @@ button {
     figure img { opacity: .8 }
 
     & .content {
-      background: var(--light-color);
+      background: var(--white-color);
 
       @media(max-width: 730px) {
         border-top: 1px solid transparent;
@@ -296,7 +296,7 @@ body.dark .action button.formatted:hover {
 h2[mat-dialog-title] {
   font-size: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--navigation-border);
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: 2rem;
   @include text-ellipsis(4rem);
   padding-top: 1.4rem;

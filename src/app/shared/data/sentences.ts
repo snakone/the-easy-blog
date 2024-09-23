@@ -32,6 +32,7 @@ export const DRAFT_CREATE_SENTENCE = 'Boceto creado!';
 export const DRAFT_UPDATE_SENTENCE = 'Boceto actualizado!';
 export const DRAFT_DELETE_SENTENCE = 'Boceto borrado!';
 export const DRAFT_PUBLISH_SENTENCE = 'Boceto publicado!';
+export const SETTINGS_SAVED = 'Configuración guardada';
 export const QUILL_PLACEHOLDER = `
 Estás frente a un lienzo en blanco. Utiliza los botones de edición situados en la parte superior para dotar a tu artículo de un fórmato profesional.
 

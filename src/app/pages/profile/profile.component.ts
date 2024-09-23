@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, DestroyRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, DestroyRef, inject } from '@angular/core';
 import { filter } from 'rxjs';
 
 import { PostsFacade } from '@core/ngrx/posts/posts.facade';
@@ -8,6 +8,7 @@ import { UserService } from '@core/services/api/users.service';
 import { LIKE_TEXT } from '@shared/data/sentences';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { User } from '@shared/types/interface.user';
+import { ActivitiesFacade } from '@core/ngrx/activities/activities.facade';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,8 @@ import { User } from '@shared/types/interface.user';
 })
 
 export class ProfileComponent {
+
+  activityFacade = inject(ActivitiesFacade);
 
   text = LIKE_TEXT;
 
@@ -53,6 +56,10 @@ export class ProfileComponent {
       takeUntilDestroyed(this.destroyRef)
     )
     .subscribe(_ => this.draftsFacade.get());
+  }
+
+  ngOnDestroy(): void {
+    this.activityFacade.reset();
   }
 
 }

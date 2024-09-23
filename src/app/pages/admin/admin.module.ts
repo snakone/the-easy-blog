@@ -14,11 +14,13 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const Material = [
   MatFormFieldModule,
   MatDialogModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSlideToggleModule
 ];
 
 @NgModule({

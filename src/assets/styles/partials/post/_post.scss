@@ -175,6 +175,10 @@ $quill-padding-sm: 16px;
     background-color: #1f1f1f !important;
     margin: 36px 0 35px !important;
     &:first-child { margin-top: 0 !important }
+
+    & + h2 {
+      margin-top: 60px !important;
+    }
   }
 
   // IMAGE
@@ -268,7 +272,7 @@ button {
     top: -4px;
     padding: 5px 12px;
     color: #313235;
-    border: 1px solid var(--navigation-border);
+    border: 1px solid var(--border-color);
     transition: border 666ms ease-in-out, 
                 background 666ms ease-in-out;
   }

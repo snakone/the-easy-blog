@@ -2,16 +2,15 @@
 :root {
   body.dark {
     --light-color: #060d17;
-    --dark-color: #f7f3f3;
+    --dark-color: #dedede;
     --shadow-color: #2b2b2b;
     --text-color: #bdbdbd;
     --primary-color: var(--contrast-color);
     --input-bg: rgb(255, 255, 255);
     --contrast-color: #ffe364;
-    --border-color: #242424;
+    --border-color: #4d4d4d;
     --transparent-bg: rgba(0, 0, 0 , 90%);
     --quote-bg: #fffce8;
-    --navigation-border: #4d4d4d;
     --navbar-border: #e9e9e9;
     --add-bg: rgba(30, 30, 30, .7);
     --button-text-color: #202020;
@@ -20,10 +19,10 @@
     --success-color: #4bb543;
     --input-focus: rgba(255, 255, 255, 20%);
     --action-bar-bg: #ffffff;
-    --action-bar-text: #555555;
+    --action-bar-text: #4a4a4a;
     --light-gradient: #0A0C0F;
     --quill-bg: #0c0e11;
-    --scrollbar-bg: #f7f3f305;
+    --scrollbar-bg: #dedede05;
     --not-seen-color: #d2d2ff;
     --seen-color: #fdf5e2;
     --pending-color: #fbdfee;
@@ -32,6 +31,9 @@
     --shadow-card-border: rgb(57 57 55 / 60%);
     --shadow-card-border-hover: rgb(56 53 53 / 26%);
     --mdc-dialog-container-color: #060d17;
+    --white-color: #000000f1;
+    --admin-button-shadow-color: #ffffff;
+    --spinner-bg:rgba(255, 255, 255, 0.1);
 
     & a { color: rgb(0, 140, 255) }
   }

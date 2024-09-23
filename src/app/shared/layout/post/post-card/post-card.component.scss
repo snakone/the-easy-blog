@@ -190,7 +190,7 @@ article {
             font-size: 15px;
             @include hover(1.5, var(--contrast-color));
             &.fa-envelope { top: 1px; }
-            &.fa-user-plus { top: -1px; }
+            &.fa-user-plus, &.fa-star { top: -1px; }
 
             &.favorite {
               transition: color 666ms ease-in-out;
@@ -208,7 +208,7 @@ article {
         }
 
         & .hide {
-          display: none;
+          display: none !important;
         }
       }
 

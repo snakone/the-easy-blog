@@ -9,7 +9,7 @@ $duration: 1.5s;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--spinner-bg);
   @media(min-width: 993px) { margin: 35px 0 -12px 0 }
 }
 

@@ -4,6 +4,8 @@ import { StorageService } from '@core/services/storage/storage.service';
 import { CrafterService } from '@core/services/crafter/crafter.service';
 import { SnackTypeEnum, ThemeEnum } from '@shared/types/types.enums';
 import { THEME_KEY } from '@shared/data/constants';
+import { SETTINGS_SAVED } from '@shared/data/sentences';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile-settings-sidebar',
@@ -14,11 +16,15 @@ import { THEME_KEY } from '@shared/data/constants';
 
 export class ProfileSettingsSidebarComponent {
 
+  dialogOpen$: Observable<boolean>;
+
   constructor(
     private settingsSrv: ProfileSettingsService,
     private ls: StorageService,
     private crafter: CrafterService
-  ) {}
+  ) {
+    this.dialogOpen$ = crafter.snack$.pipe(map(snack => Boolean(snack.message)));
+  }
   
   public saveSettings(): void {
     const settings = this.settingsSrv.settingsState();
@@ -29,7 +35,7 @@ export class ProfileSettingsSidebarComponent {
     }
     this.ls.setSettings(settings);
     this.ls.setKey(THEME_KEY, settings.theme);
-    this.crafter.setSnack('Configuración guardada', SnackTypeEnum.INFO);
+    this.crafter.setSnack(SETTINGS_SAVED, SnackTypeEnum.INFO);
   }
 
 }

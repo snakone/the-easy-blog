@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { filter, Observable } from 'rxjs';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { debounceTime, filter, map, Observable } from 'rxjs';
 
 import { User } from '@shared/types/interface.user';
 import { UsersFacade } from '@store/users/users.facade';
@@ -11,6 +11,8 @@ import { THEME_KEY } from '@shared/data/constants';
 import { LOGIN_DIALOG } from '@shared/data/dialogs';
 import { ThemeEnum } from '@shared/types/types.enums';
 import { NavigationStart, Router } from '@angular/router';
+import { SETTINGS_SAVED } from '@shared/data/sentences';
+import { Snack } from '@shared/types/interface.app';
 
 @Component({
   selector: 'app-navbar',
@@ -39,13 +41,25 @@ export class NavbarComponent {
     this.mode = this.ls.getSettings(THEME_KEY) as string;
     this.user$ = this.userFacade.user$;
     this.subToRouter();
+    this.subToThemeChange();
   }
 
   private subToRouter(): void {
     this.router.events.pipe(
-      filter((e): e is NavigationStart => (e instanceof NavigationStart)),
-      filter(_ => this.menuOpened)
-    ).subscribe(_ => this.menuOpened = false);
+      filter((e): e is NavigationStart => 
+        (e instanceof NavigationStart) && this.menuOpened),
+    )
+    .subscribe(_ => this.menuOpened = false);
+  }
+
+  private subToThemeChange(): void {
+    this.crafter.snack$
+     .pipe(
+      filter(snack => this.isSnackFromSettings(snack)),
+      debounceTime(100),
+      map(_ => this.ls.get(THEME_KEY))
+    )
+    .subscribe(res => this.mode = res);
   }
 
   public onScroll(detected: boolean): void {
@@ -62,6 +76,10 @@ export class NavbarComponent {
     const isDark = document.body.classList.toggle(ThemeEnum.DARK);
     this.mode = isDark ? ThemeEnum.DARK : ThemeEnum.LIGHT;
     this.ls.setKey(THEME_KEY, this.mode);
+  }
+
+  public isSnackFromSettings(snack: Snack): boolean {
+    return snack.message === SETTINGS_SAVED && snack.type === 'info';
   }
 
 }

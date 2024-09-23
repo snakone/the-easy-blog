@@ -104,6 +104,10 @@
   }
 }
 
-.mdc-switch .mdc-switch__ripple {
-  width: 0 !important;
+.mdc-switch {
+  scale: .9;
+
+  & .mdc-switch__ripple {
+    width: 0 !important;
+  }
 }

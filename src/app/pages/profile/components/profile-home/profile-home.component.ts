@@ -24,22 +24,9 @@ export class ProfileHomeComponent {
   ) { }
 
   ngOnInit(): void {
-    this.checkData();
+    this.activityFacade.get()
     this.user$ = this.userFacade.user$;
     this.activities$ = this.activityFacade.activities$;
-  }
-
-  private checkData(): void {
-    this.activityFacade.loaded$
-     .pipe(
-       filter(res => !res),
-       takeUntilDestroyed(this.destroyRef)
-      )
-     .subscribe(_ => this.activityFacade.get());
-  }
-
-  ngOnDestroy(): void {
-    this.activityFacade.reset();
   }
 
 }

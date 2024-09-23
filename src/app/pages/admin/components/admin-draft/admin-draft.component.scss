@@ -148,11 +148,11 @@ button {
     max-width: 150px;
     margin: 1.2rem 0 1.5rem 0;
     opacity: .8;
-    color: #f7f3f3 !important; // Light color
+    color: #dedede !important; // Light color
 
     & i {
       margin-left: 8px;
-      color: #f7f3f3;
+      color: #dedede;
     }
 
     &:hover {
@@ -203,4 +203,8 @@ button {
   h1 {
     font-size: 1.5rem;
   }
+}
+
+mat-slide-toggle {
+  margin-right: 6px;
 }

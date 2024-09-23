@@ -91,7 +91,7 @@ export const USER_INDEX: IconList[] = [
 export const CREATE_ACTION_LIST: ActionList[] = [
   { icon: 'fas fa-plus', label: 'Nuevo...', action: 'new' },
   { icon: 'far fa-eye', label: 'Previsualizar', action: 'preview' },
-  { icon: 'far fa-newspaper', label: 'Estado', action: 'status' },
+  { icon: 'fas fa-external-link-alt', label: 'Estado', action: 'status' },
   { icon: 'fas fa-broom', label: 'Limpiar', action: 'clean' },
   { icon: 'far fa-trash-alt', label: 'Eliminar', action: 'delete' },
   { icon: 'fas fa-cloud-download-alt', label: 'Descargar en HTML', action: 'download' },
@@ -132,7 +132,7 @@ export const DRAFT_ICONS: ActionList[] = [
     action: 'edit'
   },
   { 
-    icon: 'fas fa-external-link-alt',
+    icon: 'far fa-eye',
     label: 'Previsualizar',
     action: 'preview'
   },

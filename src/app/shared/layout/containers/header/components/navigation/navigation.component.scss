@@ -10,8 +10,8 @@ nav {
   @include row();
 
   & .wrapper {
-    border-bottom: 1px solid var(--navigation-border);
-    border-top: 1px solid var(--navigation-border);
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
     transition: border 666ms ease-in-out;
     overflow: hidden;
     z-index: 100;

@@ -13,7 +13,7 @@ $icon-size: 16px;
 
 .toolbar {
   border: none;
-  border-top: 1px solid var(--navigation-border);
+  border-top: 1px solid var(--border-color);
   transition: border 666ms ease-in-out;
   padding: 12px 8px 8px;
   display: flex;
@@ -134,7 +134,8 @@ $icon-size: 16px;
   }
 
   & i.fa-external-link-alt {
-    margin-left: 2px;
+    margin-left: 4px;
+    margin-right: 5px;
   }
 
   // SAVING

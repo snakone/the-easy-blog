@@ -7,7 +7,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border-bottom: 1px solid var(--navigation-border);
+  border-bottom: 1px solid var(--border-color);
   transition: border 666ms ease-in-out;
 
   & li {

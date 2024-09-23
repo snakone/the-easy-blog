@@ -9,11 +9,11 @@
     border: 0 !important;
 
     &.active {
-      filter: drop-shadow(2px 5px 5px #3333336e);
+      filter: drop-shadow(3px 7px 7px var(--shadow-color));
     }
 
     &.all {
-      border: 1px solid var(--navigation-border) !important;
+      border: 1px solid var(--admin-button-shadow-color) !important;
     }
   }
 }

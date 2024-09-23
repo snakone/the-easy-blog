@@ -1,8 +1,8 @@
 :root {
   // COLORS
-  --light-color: #f7f3f3;
+  --light-color: #dedede;
   --dark-color: #060d17;
-  --shadow-color: #d4d4d4;
+  --shadow-color: #b8b8b8;
   --text-color: #424242;
   --primary-color: #272b41;
   --input-bg: #fffdbd;
@@ -10,7 +10,6 @@
   --border-color: #c9c9c9;
   --transparent-bg: rgba(255 255 255 / 85%);
   --quote-bg: #fffdbd;
-  --navigation-border: #e2e1e1;
   --navbar-border: #484a4a;
   --add-bg: rgba(225 225 225 / 70%);
   --button-text-color: #3b3939;
@@ -23,7 +22,7 @@
   --success-color: #4BB543;
   --input-focus: rgba(0 0 0 / 20%);
   --pending-color: #9558b7;
-  --action-bar-bg: #e4e0e0;
+  --action-bar-bg: #fafafa;
   --action-bar-text: #4a4a4a;
   --light-gradient: #e8e8e8;
   --quill-bg: #ebebeb;
@@ -36,7 +35,10 @@
   --skeleton-color: #cdcdcf;
   --shadow-card-border: rgb(0 0 0 / 34%);
   --shadow-card-border-hover: rgba(0, 0, 0, 0.26);
-  --mdc-dialog-container-color: #f7f3f3;
+  --mdc-dialog-container-color: #dedede;
+  --white-color: #fffffff1;
+  --admin-button-shadow-color: #b8b8b8;
+  --spinner-bg: rgba(255, 255, 255, 0.8);
 
   // SIZE
   --app-width: 369px;

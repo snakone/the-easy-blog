@@ -71,11 +71,13 @@
           <!-- DRAFT ICONS -->
           @if(isDraft) {
             @for(item of draftIcons; track item.icon) {
-              <li (click)="switchObjDraft[item.action]()">
+              <li (click)="switchObjDraft[item.action]()"
+                  [ngClass]="{'hide': (
+                                       item.action === 'edit' && 
+                                       post.status === draftStatus.PENDING
+                                      ) || (item.action === 'preview' && alone)}">
                 <i [class]="item.icon" 
-                   [matTooltip]="item.label" 
-                   [ngClass]="{'hide': item.action === 'edit' && 
-                                       post.status === draftStatus.PENDING}">
+                   [matTooltip]="item.label">
                 </i>
               </li>
             }

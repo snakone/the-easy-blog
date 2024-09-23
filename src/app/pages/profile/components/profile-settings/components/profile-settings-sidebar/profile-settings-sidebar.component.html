@@ -10,4 +10,8 @@
   No te preocupes, no guardamos información personal de ningún usuario, solamente la que este mismo brinda.
   Para poder ofrecer una mejor experiencia, si guardamos la información que puedes elegir.
 </p>
-<button class="formatted" (click)="saveSettings()">Guardar</button>
+
+<button class="formatted"
+        (click)="saveSettings()"
+        [disabled]="dialogOpen$ | async">Guardar
+</button>

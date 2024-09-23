@@ -209,9 +209,5 @@ export class CreateContentComponent {
     Quill_Icons.header[3] = HEADER_3_QUILL_ICON;
   }
 
-  ngOnDestroy() {
-    this.draftsFacade.resetPreview();
-  }
-
 }
 
