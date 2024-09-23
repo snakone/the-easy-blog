@@ -1,11 +1,11 @@
 @defer {
   <owl-carousel-o [options]="customOptions">
     <!-- CARROUSEL -->
-    @for(item of items; track item) {
+    @for(item of items; track item.id) {
       <ng-template carouselSlide>
         <div class="item">
           <figure>
-            <img [src]="item | image" alt="Carrousel Image"/>
+            <img [src]="item.image | image" alt="Carrousel Image"/>
           </figure>
           <div class="overlay">
             <div class="info">

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 
 @Component({
   selector: 'app-scroll-top',
@@ -9,13 +9,15 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 export class ScrollTopComponent {
 
+  behaviour = input<ScrollBehavior>('smooth');
+
   constructor() { }
 
   /**
    * Scroll to top: 0 with a smooth behaviour. {window.scrollTo()}
   */
   public goTop(): void {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top: 0, behavior: this.behaviour()});
   }
 
 }

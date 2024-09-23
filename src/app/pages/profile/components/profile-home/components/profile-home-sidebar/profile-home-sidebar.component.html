@@ -1,72 +1,71 @@
-<app-sticky-aside [selector]="selector">
-  @if({
-    userPost: userPost$ | async,
-    friends: friends$ | async
-  } ; as obs) {
-    @if(user) {
-      <div class="user-card">
-        <div class="info">
-          <div class="title">
-            <!-- INFO -->
-            <div>
-              <h1>{{user.name}}</h1>
-              <div class="flex">
-                <img [src]="user.avatar">
-                <div class="profesion">
-                  @if(user.profile?.role) {
-                    <p>{{user.profile.role}}</p>
-                  }
-                  <p>{{user.profile?.location || 'Lugar desconocido'}}</p>
-                </div>
+@if({
+  userPost: userPost$ | async,
+  friends: friends$ | async
+}; as obs) {
+  @if(user) {
+    <div class="user-card">
+      <div class="info">
+        <div class="title">
+          <!-- INFO -->
+          <div>
+            <h1>{{user.name}}</h1>
+            <div class="flex">
+              <img [src]="user.avatar">
+              <div class="profesion">
+                @if(user.profile?.role) {
+                  <p>{{user.profile.role}}</p>
+                }
+                <p>{{user.profile?.location || 'Lugar desconocido'}}</p>
               </div>
             </div>
           </div>
-          <!-- STATS -->
-          <ul>
-            <li><i class="far fa-newspaper"></i> {{obs.userPost?.length}}</li>
-            @for(stat of statsList; track stat.label) {
-              <li><i [class]="stat.icon"></i> {{user.stats[stat.label]}}</li>
-            }
-          </ul>
         </div>
-        <!-- BIO -->
-        <p class="bio">{{user.profile?.bio}}</p>
-        <!-- SOCIAL -->
-        <ul class="social">
-          @for(social of socialList; track social.label) {
-            @if(user.profile[social.label]; as value) {
-              <li>
-                <i [class]="social.icon"></i> <a [href]="value" target="_blank">{{value}}</a>
-              </li>
-            }
+        <!-- STATS -->
+        <ul>
+          <li><i class="far fa-newspaper"></i> {{obs.userPost?.length}}</li>
+          @for(stat of statsList; track stat.label) {
+            <li><i [class]="stat.icon"></i> {{user.stats[stat.label]}}</li>
           }
         </ul>
-        <!-- BUTTONS -->
-        @if(isPublic) {
-          @if(obs.friends) {
-            <!-- ELIMINAR -->
-            @if(isUserMyFriend(obs.friends)) {
-              <button class="formatted remove" type="button" (click)="removeFriend()">
-                Eliminar de amigo
-              </button>
-            } @else {
-              <!-- AÑADIR -->
-              <button class="formatted" type="button" (click)="addFriend()">
-                Añadir
-              </button>
-            }
-          }
-        } @else {
-          <button class="formatted" type="button" (click)="edit()">
-            Editar
-          </button>
-        }
       </div>
-    }
-    @defer (){
-      <app-recent-post-box [posts]="obs.userPost" [margin]="true" [limit]="3"/>
-    } @placeholder {
-      <app-recent-post-skeleton [limit]="3"/>
-    }
+      <!-- BIO -->
+      <p class="bio">{{user.profile?.bio}}</p>
+      <!-- SOCIAL -->
+      <ul class="social">
+        @for(social of socialList; track social.label) {
+          @if(user.profile[social.label]; as value) {
+            <li>
+              <i [class]="social.icon"></i> <a [href]="value" target="_blank">{{value}}</a>
+            </li>
+          }
+        }
+      </ul>
+      <!-- BUTTONS -->
+      @if(isPublic) {
+        @if(obs.friends) {
+          <!-- ELIMINAR -->
+          @if(isUserMyFriend(obs.friends)) {
+            <button class="formatted remove" type="button" (click)="removeFriend()">
+              Eliminar de amigo
+            </button>
+          } @else {
+            <!-- AÑADIR -->
+            <button class="formatted" type="button" (click)="addFriend()">
+              Añadir
+            </button>
+          }
+        }
+      } @else {
+        <button class="formatted" type="button" (click)="edit()">
+          Editar
+        </button>
+      }
+    </div>
   }
-</app-sticky-aside>
+  @defer (){
+    <app-recent-post-box [posts]="obs.userPost" [margin]="true" [limit]="3"/>
+  } @placeholder {
+    <app-recent-post-skeleton [limit]="3"/>
+  }
+}
+

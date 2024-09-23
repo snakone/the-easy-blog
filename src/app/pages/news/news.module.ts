@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { LayoutModule } from '@shared/layout/layout.module';
 import { NewsAccessModule } from '@core/ngrx/news/data-access/news-access.module';
@@ -24,7 +24,8 @@ import { PipesModule } from '@shared/pipes/pipes.module';
     DirectivesModule,
     SnippetsModule,
     NewsAccessModule,
-    PipesModule
+    PipesModule,
+    NgOptimizedImage
   ],
   providers: [
     MasonryService

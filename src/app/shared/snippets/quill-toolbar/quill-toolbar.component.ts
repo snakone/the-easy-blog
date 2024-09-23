@@ -90,7 +90,7 @@ export class QuillToolbarComponent {
     download: (saving: boolean) => this.download(saving),
     help: (saving: boolean) => this.help(saving),
     status: (saving: boolean) => this.status(saving),
-    form: () => this.goToForm()
+    form: (saving: boolean) => this.goToForm(saving)
   };
 
   /**
@@ -146,7 +146,7 @@ export class QuillToolbarComponent {
    * @param saving Saving State
   */
   private status(saving: boolean): void {
-    if (!this.draft || saving || !this.draft.slug) { return; }
+    if (!this.draft || saving || !this.draft.slug || this.draft.temporal) { return; }
     this.crafter.confirmation(CHECK_DRAFT_STATUS_CONFIRMATION)
      ?.afterClosed()
       .pipe(
@@ -182,9 +182,10 @@ export class QuillToolbarComponent {
 
   /**
    * Change route to /form. Does nothing if no {draft}
+   * @param saving Saving State
   */
-  private goToForm(): void {
-    if (!this.draft) { return; }
+  private goToForm(saving: boolean): void {
+    if (!this.draft || saving) { return; }
     this.router.navigate(['form'], {relativeTo: this.activatedRoute});
   }
 

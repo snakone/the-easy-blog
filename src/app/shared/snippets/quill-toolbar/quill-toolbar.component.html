@@ -46,7 +46,7 @@
                 obs.saving?.value || 
                 !draft || 
                 (draft.temporal && (item.action === 'new')) || 
-                (item.action === 'status' && !draft.slug)
+                (item.action === 'status' && (!draft.slug || draft.temporal))
              }">
           </i>
         }
@@ -59,7 +59,7 @@
         <i class="fas fa-spell-check"
           [matTooltip]="(!obs.saving?.value && draft) ? 'Formulario' : null"
           [ngClass]="{'disabled': obs.saving?.value || !draft}"
-          (click)="switchAction.form()">
+          (click)="switchAction.form(obs.saving?.value)">
         </i>
       } @else {
         <!-- CLEAN -->

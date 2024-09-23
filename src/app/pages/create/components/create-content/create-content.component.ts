@@ -70,7 +70,10 @@ export class CreateContentComponent {
     this.active$ = this.draftsFacade.active$.pipe(
       tap(res => (this.draft = res)),
       filter(Boolean),
-      tap(_ => this.checkIfTemporal())
+      tap(_ => (
+        this.checkIfTemporal(), 
+        this.checkCurrentDelta()
+      ))
     );
   }
 
@@ -119,6 +122,7 @@ export class CreateContentComponent {
     const draft = this.setDeltaAndUpdate(delta);
     this.save(false);
     this.draftsFacade.setPreview(draft);
+    this.createDraftSrv.currentDelta.set(draft.message);
   }
 
   private setDeltaAndUpdate(
@@ -151,6 +155,14 @@ export class CreateContentComponent {
     } else {
       this.save(false, null);
       this.isTemporal = false;
+    }
+  }
+
+  private checkCurrentDelta(): void {
+    const currentDelta = this.createDraftSrv.currentDelta();
+
+    if(currentDelta) {
+      this.draft.message = currentDelta;
     }
   }
 

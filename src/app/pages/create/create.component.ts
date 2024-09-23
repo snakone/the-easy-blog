@@ -1,8 +1,7 @@
-import { Component, ChangeDetectionStrategy, DestroyRef, HostListener } from '@angular/core';
+import { Component, ChangeDetectionStrategy, DestroyRef } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
 import { DraftsFacade } from '@store/drafts/drafts.facade';
-import { NOTIFICATION_TEXT } from '@shared/data/sentences';
 import { Post } from '@shared/types/interface.post';
 import { CreateDraftService } from './services/create-draft.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -42,6 +41,7 @@ export class CreateComponent {
   }
 
   ngOnDestroy(): void {
+    this.createDraftSrv.currentDelta.set(null);
     this.draftsFacade.resetActive();
   }
 

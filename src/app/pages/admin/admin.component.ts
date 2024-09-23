@@ -18,16 +18,7 @@ export class AdminComponent {
   ) { }
 
   ngOnInit(): void {
-    this.checkData();
-  }
-
-  private checkData(): void {
-    this.draftsFacade.allLoaded$
-     .pipe(
-       filter(res => !res),
-       takeUntilDestroyed(this.destroyRef)
-      )
-     .subscribe(_ => this.draftsFacade.getAll());
+    this.draftsFacade.getAll()
   }
 
   ngOnDestroy(): void {

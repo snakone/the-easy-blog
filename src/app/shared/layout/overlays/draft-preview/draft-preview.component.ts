@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DraftPreviewDialogData } from '@shared/types/interface.app';
 import { STATUS_KEY } from '@shared/data/constants';
 import { DraftStatusEnum } from '@shared/types/types.enums';
+import { QuillModules } from 'ngx-quill';
 
 const TIME_TO_BE_SEEN = 10000;
 
@@ -21,6 +22,10 @@ export class DraftPreviewDialogComponent {
 
   preview$: Observable<Post>;
   timer: NodeJS.Timer;
+
+  quillModules: QuillModules = {
+    syntax: true,
+  };
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DraftPreviewDialogData,

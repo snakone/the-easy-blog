@@ -30,6 +30,7 @@ export interface UserStats {
 
 // ACTIVITY
 export interface UserActivity {
+  _id: string;
   message: string;
   title: string;
   createdAt?: Date;

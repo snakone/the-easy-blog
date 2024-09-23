@@ -39,7 +39,7 @@ export class TopDirective {
       }
       this.manageCSS(scroll > limit);
     } catch (err) {
-      console.error('Error al manejar el desplazamiento:', err);
+      console.error(err);
     }
   }
 

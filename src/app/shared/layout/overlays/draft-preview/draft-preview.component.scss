@@ -1,14 +1,20 @@
 @import 'mixins/mixins.scss';
 
+$dialog-padding: 24px;
+
 .header-preview {
   position: sticky;
   top: 0;
   width: 100%;
   background: var(--light-color);
   z-index: 1000;
+  width: calc(100% + $dialog-padding * 2);
+  top: calc($dialog-padding * -1);
+  margin: calc($dialog-padding * -1);
+  padding: $dialog-padding;
 }
 
-::-webkit-scrollbar { width: 4px !important;  }
+::-webkit-scrollbar { width: 6px !important;  }
 
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-bg) !important;
@@ -20,20 +26,29 @@
 
 quill-view {
   display: block;
-  margin: 2rem 0;
+  margin: 2rem 0 0 0;
 }
 
 h2 {
   position: relative;
   font-size: 26px;
+  padding-right: 36px;
+
+  @media(max-width: 850px) {
+    font-size: 22px;
+  }
+
+  @media(max-width: 550px) {
+    font-size: 20px;
+  }
 }
 
 .close {
   background-color: transparent;
   position: absolute;
   outline: none;
-  right: 0px;
-  top: -1px;
+  right: 0;
+  top: 0;
   padding: 4px;
   border: none;
   cursor: pointer;

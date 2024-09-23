@@ -3,7 +3,7 @@
 <div class="profile-content">
   @if(user) {
     @defer(when activities) {
-      @for(activity of activities; track activity.slug) {
+      @for(activity of activities; track activity._id) {
         <article [ngClass]="{'admin': activity.admin, 'route': canVisit(activity)}" 
                  [class]="activity.type"
                  [routerLink]="canVisit(activity) ? ('/' + activity.route + '/' + activity.slug) : null">

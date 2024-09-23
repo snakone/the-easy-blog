@@ -16,9 +16,10 @@ export class PostCarrouselComponent {
   customOptions = CARROUSEL_OPTS;
 
   items = [
-    '02-img.jpg',
-    '03-img.jpg',
-    '04-img.jpg',
+    { image: '02-img.jpg', id: 1 },
+    { image: '03-img.jpg', id: 2 },
+    { image: '04-img.jpg', id: 3 },
+    { image: '03-img.jpg', id: 4 },
   ];
 
   constructor() { }

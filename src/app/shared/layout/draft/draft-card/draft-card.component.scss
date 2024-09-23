@@ -77,7 +77,7 @@ li {
   }
 
   & h3 { 
-    @include text-ellipsis(40px);
+    @include text-ellipsis(16px);
     font-size: 14px;
     transition: transform 200ms ease-in;
 

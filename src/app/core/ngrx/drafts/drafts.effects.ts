@@ -195,7 +195,8 @@ export class DraftsEffects {
       tap(_ => this.crafter.setSnack(DRAFT_PUBLISH_SENTENCE, SnackTypeEnum.SUCCESS)),
       switchMap((_) => of(...[
         DraftsActions.reset(null),
-        PostsActions.reset()
+        PostsActions.reset(),
+        DraftsActions.getAll()
       ]))
     )
   )

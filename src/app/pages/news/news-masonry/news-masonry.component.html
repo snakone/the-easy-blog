@@ -5,13 +5,14 @@
           <div class="inner">
             <a [href]="news.url" target="_blank">
               @defer (on viewport){
-                <img [src]="news.image" 
-                        alt="News Image" 
-                        loading="lazy"
-                        #img
-                        (error)="img.src = 'assets/images/placeholder.png'; img.alt='No Image'">
+                <img [ngSrc]="news.image" 
+                      alt="News Image" 
+                      loading="lazy"
+                      width="564" height="300"
+                      #img
+                      (error)="img.src = 'assets/images/placeholder.png'; img.alt='No Image'">
               } @placeholder {
-                <img [src]="null | image" alt="placeholder"/>
+                <img src="assets/images/placeholder.png" alt="placeholder"/>
               }
             </a>
           </div>
