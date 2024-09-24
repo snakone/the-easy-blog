@@ -1,7 +1,7 @@
 @defer(when posts) {
   <div class="recent" [ngClass]="{'margin': margin}">
     <ul>
-      @for(post of posts; track post._id) {
+      @for(post of (posts | limitArray: limit); track post._id) {
         <li [routerLink]="'/post/' + post.slug">
           <div class="wrapper">
             <img [src]="post.cover" alt="Post Image" 

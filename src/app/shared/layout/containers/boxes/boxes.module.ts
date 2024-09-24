@@ -5,6 +5,7 @@ import { RecentPostBoxComponent } from './recent-post-box/recent-post-box.compon
 import { CategoryBoxComponent } from './category-box/category-box.component';
 import { RouterModule } from '@angular/router';
 import { SkeletonModule } from '@shared/snippets/skeleton/skeleton.module';
+import { PipesModule } from '@shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SkeletonModule } from '@shared/snippets/skeleton/skeleton.module';
   imports: [
     CommonModule,
     RouterModule,
-    SkeletonModule
+    SkeletonModule,
+    PipesModule
   ],
   exports: [
     RecentPostBoxComponent,

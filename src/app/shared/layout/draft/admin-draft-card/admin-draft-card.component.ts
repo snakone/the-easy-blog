@@ -7,6 +7,7 @@ import { Post } from '@shared/types/interface.post';
   styleUrls: ['./admin-draft-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class AdminDraftCardComponent {
 
   @Input() draft: Post;

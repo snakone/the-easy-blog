@@ -1,18 +1,27 @@
 $button-width: 30px;
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 1.8rem;
+  font-size: 22px;
+  margin: 0 0 2rem 0;
+
+  @media(max-width: 550px) {
+    font-size: 18px;
+  }
+}
+
+.form-control {
+  margin: 1.5rem 0;
 }
 
 .wrapper {
   width: 100%;
   overflow-x: auto;
-  margin: 2.5rem 0 0 0;
 }
 
-table th {
-  background-color: #d2d1d1;
+table {
+  & th {
+    background-color: #d2d1d1;
+  }
 }
 
 td {
@@ -24,19 +33,27 @@ td {
     position: relative;
     left: calc($button-width - 1rem);
 
+    @media(min-width: 1201px) {
+      left: calc($button-width - .4rem);
+    }
+
     @media(max-width: 992px) {
       left: .5rem;
+    }
+
+    @media(max-width: 550px) {
+      left: 0;
     }
   }
 
   &.code, &.http {
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   &.code { color: chocolate; }
   &.http { color: crimson; }
 
-  &.mat-cell-error {
+  &.mat-cell-no-data {
     padding: 14px;
     color: var(--action-bar-text);
   }
@@ -59,5 +76,19 @@ tr.expanded-row {
 input:disabled {
   opacity: 0.7;
   pointer-events: none;
+}
+
+// SCROLLBAR
+::-webkit-scrollbar { 
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-track-piece {
+  background: transparent;
 }
 

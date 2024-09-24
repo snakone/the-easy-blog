@@ -104,4 +104,8 @@ export class DraftsFacade {
     this.store.dispatch(DraftActions.removeTemporal({post}));
   }
 
+  public findActiveAndUpdate(): void {
+    this.store.dispatch(DraftActions.findActiveAndUpdate());
+  }
+
 }

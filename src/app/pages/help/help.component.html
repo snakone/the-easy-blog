@@ -1,11 +1,11 @@
 <div class="animated fadeIn">
   <section class="help-content">
     <app-help-header/>
-    <app-action-bar [text]="text"/>
+    <app-action-bar [text]="text" [margin]="true"/>
   </section>
 
   <section class="help-content">
-    <app-section>
+    <app-section [margin]="true">
       <app-help-content id="sticky-wrapper"/>
       <app-help-sidebar/>
     </app-section>

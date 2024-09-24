@@ -5,19 +5,9 @@ section, .wrapper {
   @include row();
 }
 
-mat-tab-group {
-  margin-top: -18px;
-}
-
-.start {
-  display: block;
-  padding-top: 2rem;
-  font-style: italic;
-}
-
 h1 {
-  font-size: 24px;
-  margin: 2rem 0;
+  font-size: 22px;
+  margin: 0 0 2rem 0;
 }
 
 h2 {
@@ -63,10 +53,6 @@ ul {
 @media(max-width: 550px) {
   p, ul {
     font-size: 13px;
-  }
-
-  .start {
-    font-size: 11px;
   }
 
   h1 {

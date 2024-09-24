@@ -29,9 +29,9 @@ quill-view {
   margin: 2rem 0 0 0;
 }
 
-h2 {
+h1 {
   position: relative;
-  font-size: 26px;
+  font-size: 24px;
   padding-right: 36px;
 
   @media(max-width: 850px) {
@@ -39,7 +39,7 @@ h2 {
   }
 
   @media(max-width: 550px) {
-    font-size: 20px;
+    font-size: 21px;
   }
 }
 

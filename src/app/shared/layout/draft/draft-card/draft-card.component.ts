@@ -33,7 +33,6 @@ export class DraftCardComponent {
 
   public activate(draft: Post): void {
     if (this.saving?.value || draft.status === DraftStatusEnum.PENDING) { return; }
-    this.createDraftSrv.currentDelta.set(null);
     this.draftsFacade.setActive(draft);
   }
 

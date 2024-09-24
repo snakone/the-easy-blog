@@ -1,17 +1,18 @@
 <h1>Tabla de errores</h1>
 <p>A continuación se muestran los errores en formato tabla.</p>
 
+<!-- SEARCH -->
+<div class="form-control">
+  <input type="text" 
+          #input 
+          placeholder="Buscador de errores..."
+          autocomplete="off"
+          autofocus="false"
+          (keyup)="filter($event)"
+          [disabled]="dataSource.data.length === 0"/>
+</div>
+
 <div class="wrapper">
-  <!-- SEARCH -->
-  <div class="form-control">
-    <input type="text" 
-           #input 
-           placeholder="Buscador de errores..."
-           autocomplete="off"
-           autofocus="false"
-           (keyup)="filter($event)"
-           [disabled]="dataSource.data.length === 0"/>
-  </div>
   <!-- TABLE -->
   <table mat-table 
          multiTemplateDataRows 
@@ -62,7 +63,7 @@
 
     <!-- NO DATA -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell-error"
+      <td class="mat-cell-no-data"
          [attr.colspan]="columnsWithExpand.length">
          @if(!!dataSource.filter && dataSource.data.length > 0) {
           No se han encontrado resultados.

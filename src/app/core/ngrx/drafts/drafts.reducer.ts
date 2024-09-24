@@ -43,7 +43,7 @@ const featureReducer = createReducer(
         ...state,
         loaded: true,
         drafts: [...drafts].map(d => d._id === state.active?._id ? (d.active = true, d) : d),
-        error: null
+        error: null,
       }
     )
   }),
@@ -137,7 +137,17 @@ const featureReducer = createReducer(
       ...state, 
       drafts: [...state.drafts.filter(d => !d.temporal || d._id !== post?._id)],
       temporal: [...state.temporal.filter(t => t._id !== post?._id)]
-    }))
+  })),
+  // FIND ACTIVE ID AND UPDATE
+  on(DraftActions.findActiveAndUpdate, (state) => {
+    const draftActive = state.drafts.find(d => d._id === state.active?._id);
+    return (
+    { 
+      ...state,
+      active: draftActive ?? state.active,
+      preview: draftActive ?? state.preview,
+    }
+  )}),
 );
 
 export function reducer(state: DraftsState | undefined, action: Action) {

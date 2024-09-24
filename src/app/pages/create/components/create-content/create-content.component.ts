@@ -70,11 +70,8 @@ export class CreateContentComponent {
     this.active$ = this.draftsFacade.active$.pipe(
       tap(res => (this.draft = res)),
       filter(Boolean),
-      tap(_ => (
-        this.checkIfTemporal(), 
-        this.checkCurrentDelta()
-      ))
-    );
+      tap(_ => this.checkIfTemporal())
+      );
   }
 
   private listenEditor(): void {
@@ -115,14 +112,13 @@ export class CreateContentComponent {
     delta: DeltaStatic
   ): void {
     if (this.draft.temporal) {
-      this.save(false);
+      this.save(false, SavingTypeEnum.TEMPORAL);
       return;
      }
      
     const draft = this.setDeltaAndUpdate(delta);
     this.save(false);
     this.draftsFacade.setPreview(draft);
-    this.createDraftSrv.currentDelta.set(draft.message);
   }
 
   private setDeltaAndUpdate(
@@ -155,14 +151,6 @@ export class CreateContentComponent {
     } else {
       this.save(false, null);
       this.isTemporal = false;
-    }
-  }
-
-  private checkCurrentDelta(): void {
-    const currentDelta = this.createDraftSrv.currentDelta();
-
-    if(currentDelta) {
-      this.draft.message = currentDelta;
     }
   }
 
@@ -207,6 +195,10 @@ export class CreateContentComponent {
 
   private addHeader3ToQuill(): void {
     Quill_Icons.header[3] = HEADER_3_QUILL_ICON;
+  }
+
+  ngOnDestroy() {
+    this.draftsFacade.findActiveAndUpdate();
   }
 
 }

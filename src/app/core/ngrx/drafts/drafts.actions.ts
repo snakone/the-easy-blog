@@ -160,3 +160,7 @@ export const addTemporal =
 export const removeTemporal =
   createAction('[Drafts API] Remove Temporal Post to Drafts',
   props<{ post: Post }>());
+
+// FIND ACTIVE
+export const findActiveAndUpdate =
+  createAction('[Drafts API] Find Active and Update');

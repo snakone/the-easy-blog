@@ -65,7 +65,8 @@
         <!-- CLEAN -->
         <i class="fas fa-broom"
           matTooltip="Limpiar"
-          (click)="switchAction.clean(obs.saving?.value)">
+          (click)="switchAction.clean(obs.saving?.value)"
+          [ngClass]="{'disabled': obs.saving?.value || !draft}">
         </i>
         <!-- HELP -->
         <i class="fas fa-question-circle" 
@@ -75,8 +76,9 @@
         <!-- BACK -->
         @if (form) {
           <i class="fas fa-pen-nib"
-                    matTooltip="Lienzo"
-                    [routerLink]="['../']">
+             matTooltip="Lienzo"
+            [routerLink]="obs.saving?.value || !draft ? null : ['../']"
+            [ngClass]="{'disabled': obs.saving?.value || !draft}">
           </i>
         }
       }

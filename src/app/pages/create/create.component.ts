@@ -41,7 +41,6 @@ export class CreateComponent {
   }
 
   ngOnDestroy(): void {
-    this.createDraftSrv.currentDelta.set(null);
     this.draftsFacade.resetActive();
     this.draftsFacade.resetPreview();
   }

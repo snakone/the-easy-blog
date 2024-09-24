@@ -51,7 +51,7 @@ select {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 8px;
   position: relative;
 
@@ -64,6 +64,10 @@ h1 {
     height: 3px;
     background-color: var(--contrast-color);
     transition: background-color 666ms ease-in-out;
+  }
+
+  @media(max-width: 550px) {
+    font-size: 18px;
   }
 }
 
