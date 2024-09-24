@@ -1,6 +1,11 @@
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CrafterService } from '../crafter/crafter.service';
+
+import { SnackTypeEnum } from '@shared/types/types.enums';
+import { StorageService } from '../storage/storage.service';
+import { REFRESH_TOKEN_KEY } from '@shared/data/constants';
+import { CustomErrorService } from '../custom-error/custom-error.service';
 
 import { 
   ERROR_SERVER_SENTENCE, 
@@ -8,9 +13,6 @@ import {
   UNKWON_ERROR_SENTENCE, 
   WRONG_INFO_SENTENCE 
 } from '@shared/data/sentences';
-import { SnackTypeEnum } from '@shared/types/types.enums';
-import { StorageService } from '../storage/storage.service';
-import { REFRESH_TOKEN_KEY } from '@shared/data/constants';
 
 @Injectable({providedIn: 'root'})
 
@@ -18,9 +20,15 @@ export class ErrorHandlerService implements ErrorHandler {
 
   chunkFailedMessage = /Loading chunk [\d]+ failed/;
 
-  constructor(private crafter: CrafterService, private ls: StorageService) { }
+  constructor(
+    private crafter: CrafterService, 
+    private ls: StorageService,
+    private injector: Injector
+  ) { }
 
   handleError(error: Error | HttpErrorResponse): void {
+    const service = this.injector.get(CustomErrorService);
+
     switch (error.constructor) {
       case TypeError: { console.error('Type Error! ', error);
         break;
@@ -29,6 +37,8 @@ export class ErrorHandlerService implements ErrorHandler {
         break;
       }
     }
+
+    service.saveCustomError(error);
   }
 
   public showHttpError(err: HttpErrorResponse): void {

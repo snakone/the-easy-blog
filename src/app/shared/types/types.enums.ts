@@ -112,3 +112,8 @@ export enum DraftSidebarSettingsEnum {
   EXPANDED = 'expanded',
   COLLAPSED = 'collapsed'
 }
+
+export enum ErrorsTypeEnum {
+  CODE = 'code',
+  HTTP = 'http'
+}

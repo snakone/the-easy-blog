@@ -24,7 +24,7 @@ export class AdminContentComponent {
     {status: DraftStatusEnum.NOT_SEEN, active: false},
     {status: DraftStatusEnum.SEEN, active: false}, 
     {status: DraftStatusEnum.PENDING, active: false},
-    {status: DraftStatusEnum.ALL, active: false}
+    {status: DraftStatusEnum.ALL, active: true}
   ];
 
   constructor(private draftsFacade: DraftsFacade, private destroyRef: DestroyRef) { }

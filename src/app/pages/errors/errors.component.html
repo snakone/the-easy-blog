@@ -1,0 +1,13 @@
+<div class="animated fadeIn">
+  <div class="wrapper">
+    <app-action-bar [text]="text"
+                    [margin]="true"/>
+  </div>
+  <section class="news-content">
+    <app-section [margin]="false">
+      <app-errors-content [errors]="errors$ | async"/>
+    </app-section>
+  </section>
+</div>
+
+<app-scroll-top [behaviour]="'instant'"/>

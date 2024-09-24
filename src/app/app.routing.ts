@@ -75,6 +75,13 @@ const routes: Routes = [
       import('./pages/search/search.module')
        .then(mod => mod.SearchModule), data: { name: 'Search' }
   },
+  {
+    path: 'errors',
+    loadChildren: () =>
+      import('./pages/errors/errors.module')
+       .then(mod => mod.ErrorsModule), data: { name: 'Errors' },
+    canActivate: [AdminGuard]
+  },
   { path: '**', redirectTo: 'home' },
 ];
 

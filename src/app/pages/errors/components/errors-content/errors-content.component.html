@@ -1,0 +1,84 @@
+<h1>Tabla de errores</h1>
+<p>A continuación se muestran los errores en formato tabla.</p>
+
+<div class="wrapper">
+  <!-- SEARCH -->
+  <div class="form-control">
+    <input type="text" 
+           #input 
+           placeholder="Buscador de errores..."
+           autocomplete="off"
+           autofocus="false"
+           (keyup)="filter($event)"
+           [disabled]="dataSource.data.length === 0"/>
+  </div>
+  <!-- TABLE -->
+  <table mat-table 
+         multiTemplateDataRows 
+         [dataSource]="dataSource" 
+         class="mat-elevation-z8 errors-table">
+    <!-- HEADERS -->
+    <tr mat-header-row *matHeaderRowDef="columnsWithExpand; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsWithExpand"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expanded-row"></tr>
+  
+    <!-- COLUMNS -->
+    @for(column of columns; track column) {
+      <ng-container [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef> {{ getHeaderString(column) }} </th>
+        <td mat-cell 
+            *matCellDef="let element" 
+            [class]="element[column]"> {{ element[column] || 'N/A' }}
+        </td>
+      </ng-container>
+    }
+
+    <!-- EXPANDED BUTTON -->
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button aria-label="expand row" 
+               (click)="(expandedEl = expandedEl === element ? null : element); $event.stopPropagation()">
+          @if(expandedEl === element) {
+            <i class="fas fa-chevron-up"></i>
+          } @else {
+            <i class="fas fa-chevron-down"></i>
+          }
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- EXPANDED ROW -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsWithExpand.length">
+        <div [@detailExpand]="element == expandedEl ? 'expanded' : 'collapsed'">
+          <div class="expanded-element">
+            <p><b>{{element.message}}</b></p>
+            <p>{{element.text}}</p>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- NO DATA -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell-error"
+         [attr.colspan]="columnsWithExpand.length">
+         @if(!!dataSource.filter && dataSource.data.length > 0) {
+          No se han encontrado resultados.
+         } @else {
+          Parece que no hay errores. ¡Genial!
+         }
+      </td>
+    </tr>
+  </table>
+
+  @if(dataSource.data.length > 10) {
+    <mat-paginator [pageSizeOptions]="[10]"
+                  showFirstLastButtons
+                  [hidePageSize]="true"
+                  aria-label="Select page"
+                  [length]="dataSource.data?.length">
+    </mat-paginator>
+  }
+</div>

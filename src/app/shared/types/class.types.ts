@@ -1,5 +1,5 @@
 import { DraftSideBarSettings } from "./interface.user";
-import { DraftSidebarSettingsEnum, ThemeEnum, ThemeType } from "./types.enums";
+import { DraftSidebarSettingsEnum, ErrorsTypeEnum, ThemeEnum, ThemeType } from "./types.enums";
 
 export class MasonryType {
     public layout!: () => void;
@@ -31,4 +31,31 @@ export class UserSettings {
       state: DraftSidebarSettingsEnum.EXPANDED
     }
   ) { }
+}
+
+export class CustomError {
+  name: string;
+  message: string;
+  status?: number;
+  text: string;
+  url?: string;
+  author?: string;
+  date?: string;
+  type: ErrorsTypeEnum;
+
+  constructor(name: string,
+              type: ErrorsTypeEnum,
+              message: string = 'Error',
+              text: string = 'Error',
+              author: string,
+              status: number = null,
+              url: string = '',) {
+    this.name = name;
+    this.type = type;
+    this.message = message;
+    this.status = status;
+    this.text = text;
+    this.url = url;
+    this.author = author;
+  }
 }

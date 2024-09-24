@@ -1,9 +1,10 @@
 import { IconList, ActionList, TextList, FQAItem } from '@shared/types/interface.app';
-import { Post, SearchResultAmount } from '@shared/types/interface.post';
+import { Post } from '@shared/types/interface.post';
 import { CheckStatusList } from '@shared/types/interface.server';
 import { DraftStatusEnum, DraftTypeEnum } from '@shared/types/types.enums';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SearchResult } from '@shared/types/interface.user';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 export const CARROUSEL_OPTS: OwlOptions = {
   loop: false,
@@ -408,3 +409,11 @@ export const SEARCH_RESULT_AMOUNT_LIST= (result: SearchResult) => [
   { name: 'Usuarios', icon: 'fas fa-user', amount: result.users.length || 0 },
   { name: 'Amigos', icon: 'fas fa-users', amount: result.friends.length || 0 },
 ];
+
+export const EXPANDED_TABLE_ANIMATION = [
+  trigger('detailExpand', [
+    state('collapsed,void', style({height: '0px', minHeight: '0'})),
+    state('expanded', style({height: '*'})),
+    transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+  ]),
+]

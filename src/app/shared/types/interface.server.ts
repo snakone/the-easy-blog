@@ -1,3 +1,4 @@
+import { CustomError } from "./class.types";
 import { FormattedNew } from "./interface.app";
 import { Post } from "./interface.post";
 import { SearchResult, User, UserActivity } from "./interface.user";
@@ -50,6 +51,10 @@ export interface ActivitiesResponse extends ServerResponse {
 
 export interface SearchResponse extends ServerResponse { 
   result?: SearchResult;
+}
+
+export interface ErrorsResponse extends ServerResponse { 
+  errors?: CustomError[];
 }
 
 // CHECK

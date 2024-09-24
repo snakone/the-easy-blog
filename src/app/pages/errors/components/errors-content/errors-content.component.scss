@@ -1,0 +1,63 @@
+$button-width: 30px;
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 1.8rem;
+}
+
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 2.5rem 0 0 0;
+}
+
+table th {
+  background-color: #d2d1d1;
+}
+
+td {
+  & button {
+    width: $button-width;
+    height: $button-width;
+    font-size: 16px;
+    padding: 4px;
+    position: relative;
+    left: calc($button-width - 1rem);
+
+    @media(max-width: 992px) {
+      left: .5rem;
+    }
+  }
+
+  &.code, &.http {
+    text-transform: uppercase;
+  }
+
+  &.code { color: chocolate; }
+  &.http { color: crimson; }
+
+  &.mat-cell-error {
+    padding: 14px;
+    color: var(--action-bar-text);
+  }
+}
+
+tr.expanded-row {
+  height: 0;
+  padding: 0;
+}
+
+.expanded-element {
+  overflow: hidden;
+  padding: 16px 4px;
+
+  & p {
+    margin-bottom: 1rem;
+  }
+}
+
+input:disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+

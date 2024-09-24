@@ -7,6 +7,7 @@ import * as fromDrafts from '@store/drafts/drafts.reducer';
 import * as fromActivities from '@store/activities/activities.reducer';
 import * as fromNews from '@store/news/news.reducer';
 import * as fromSearch from '@store/search/search.reducer';
+import * as fromErrors from '@store/errors/errors.reducer';
 
 // APP STATE
 export interface AppState {
@@ -49,3 +50,12 @@ export const newsReducers: ActionReducerMap<NewsPartialState> = {
   news: fromNews.reducer
 };
 export const getNewsPartialState = createFeatureSelector<NewsPartialState>('NewsState');
+
+// ERRORS
+export interface ErrorsPartialState {
+  errors: fromErrors.ErrorsState;
+}
+export const errorsReducers: ActionReducerMap<ErrorsPartialState> = {
+  errors: fromErrors.reducer
+};
+export const getErrorsPartialState = createFeatureSelector<ErrorsPartialState>('ErrorsState');

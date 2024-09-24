@@ -25,7 +25,6 @@ import { PipesModule } from '@shared/pipes/pipes.module';
     SnippetsModule,
     NewsAccessModule,
     PipesModule,
-    NgOptimizedImage
   ],
   providers: [
     MasonryService

@@ -55,17 +55,24 @@
               </i>
               @if(menuOpened) {
                 <ul class="dropdown-menu">
+                  <!-- MENU ITEMS -->
                   @for(menu of dropdown; track menu._id; let i = $index) {
                     <li [class]="'dropdown-item-' + (i + 1)" aria-hidden="false"
                         [routerLink]="menu.route"
                         (click)="menuOpened = false">{{menu.label}}
                     </li>
                   }
+                  <!-- ADMIN ITEMS -->
                   @if(obs.user && (obs.user.account === 'Admin' || obs.user.account === 'Super')) {
                     <li [class]="'dropdown-item-' + (dropdown.length + 1)"
                         [routerLink]="'/admin'"
                         (click)="menuOpened = false"
                         aria-label="admin">Admin
+                    </li>
+                    <li [class]="'dropdown-item-' + (dropdown.length + 2)"
+                        [routerLink]="'/errors'"
+                        (click)="menuOpened = false"
+                        aria-label="errors">Errors
                     </li>
                   }
                 </ul>

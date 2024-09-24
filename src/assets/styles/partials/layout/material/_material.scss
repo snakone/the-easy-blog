@@ -111,3 +111,39 @@
     width: 0 !important;
   }
 }
+
+mat-paginator {
+  & .mat-mdc-icon-button.mat-mdc-button-base {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 6px;
+    padding: 3px !important;
+  }
+}
+
+table.errors-table {
+  & th {
+    &.mat-column-date {
+      min-width: 195px;
+    }
+  }
+
+  @media(max-width: 992px) {
+    & td {
+      font-size: 12px;
+    }
+  }
+
+  & tbody {
+    & tr:not(.expanded-row) {
+      &:hover {
+        background-color: #efefef;
+      }
+    }
+  }
+}
+
+.mdc-switch__track::before {
+  background-color: #ffffff !important;
+}
+

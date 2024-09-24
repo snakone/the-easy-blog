@@ -17,7 +17,7 @@
     "url": "https://github.com/snakone/the-formatted-blog"
   },
   "engines": {
-    "node": ">=16.15.1 <=18.18.0"
+    "node": ">=18.18.0 <=20.17.0"
   },
   "scripts": {
     "ng": "ng",

@@ -7,9 +7,10 @@
     position: relative !important;
     margin-right: 10px;
     border: 0 !important;
+    transition: filter 333ms ease-in;
 
     &.active {
-      filter: drop-shadow(3px 7px 7px var(--shadow-color));
+      filter: drop-shadow(3px 5px 5px var(--shadow-color));
     }
 
     &.all {

@@ -5,12 +5,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { CORE_MODULE_CONFIG, CORE_MODULE_CONSTANTS } from './core.module.config';
 import { environment } from '@env/environment';
-import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerConfig } from './hammer.config';
 import { ErrorHandlerService } from './services/error-handler/error-handler.service';
+import { CustomErrorService } from './services/custom-error/custom-error.service';
 import { HttpService } from './services/http/http.service';
 import { StorageModule } from './services/storage/storage.module';
 import { appReducers } from './ngrx/ngrx.index';
@@ -41,6 +42,7 @@ import { SearchEffects } from './ngrx/search/search.effects';
         { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         provideHttpClient(withInterceptorsFromDi()),
+        CustomErrorService
       ] 
     })
 
